@@ -1,0 +1,12 @@
+CHANGELOG.txt
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+
+lib/colorize.rb
+lib/colorize/version.rb
+lib/colorize/colorize.rb
+setup.rb
+test/test_helper.rb
+test/test_colorize.rb
