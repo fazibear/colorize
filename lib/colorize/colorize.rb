@@ -67,6 +67,8 @@ class String
   #   puts "This is blue with red background".colorize( :light_blue ).colorize( :background => :red )
   #   puts "This is blue text on red".blue.on_red
   #   puts "This is red on blue".colorize( :red ).on_blue
+  #   puts "This is red on blue and underline".colorize( :red ).on_blue.underline
+  #   puts "This is blue text on red".blue.on_red.blink
   #
   def colorize( params )
     
@@ -132,15 +134,15 @@ class String
   end
 
   #
-  # Methods for modes ??
+  # Methods for modes
   #
-  #MODES.each_key do | key |
-  #  eval <<-"end_eval"
-  #    def #{key.to_s}ed
-  #      return self.colorize( :mode => :#{key.to_s} )
-  #    end
-  #  end_eval
-  #end
+  MODES.each_key do | key |
+    eval <<-"end_eval"
+      def #{key.to_s}
+        return self.colorize( :mode => :#{key.to_s} )
+      end
+    end_eval
+  end
 
   class << self
     
