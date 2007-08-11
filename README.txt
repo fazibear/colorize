@@ -1,9 +1,20 @@
-README for colorize
-===================
+colorize
+    by Michal Kalbarczyk (FaziBear)
+    http://gruby.rubyforge.org 
 
+== DESCRIPTION:
+  
 Ruby string class extension. It add some methods to set color, background color and text effect on console easier using ANSI escape sequences.
 
-Some usage samples:
+== FEATURES/PROBLEMS:
+  
+* change string color
+* change string background
+* change string effect
+
+== SYNOPSIS:
+
+  Some usage samples:
 
   puts "This is blue".colorize( :blue )
   puts "This is light blue".colorize( :light_blue )
@@ -13,12 +24,32 @@ Some usage samples:
   puts "This is blue text on red".blue.on_red
   puts "This is red on blue".colorize( :red ).on_blue
   puts "This is uncolorized".blue.on_red.uncolorize
+  puts "This is red on blue and underline".colorize( :red ).on_blue.underline
+  puts "This is blue text on red".blue.on_red.blink
 
-Class methods:
+  Class methods:
 
   String.colors - return array of all possible colors names
   String.modes  - return array of all possible modes
   String.color_matrix - displays color matrix with color names
   String.color_matrix( "FOO" ) - display color matrix with "FOO" text
 
+== REQUIREMENTS:
 
+* Win32/Console/ANSI (for Windows)
+
+== INSTALL:
+
+* sudo gem install colorize
+
+== LICENSE:
+
+colorize - Ruby string class extension. It add some methods to set color, background color and text effect on console easier using ANSI escape sequences.
+
+Copyright (C) 2007 Michal Kalbarczyk
+
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. 
