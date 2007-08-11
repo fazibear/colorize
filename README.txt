@@ -1,6 +1,6 @@
 colorize
     by Michal Kalbarczyk (FaziBear)
-    http://gruby.rubyforge.org 
+    http://colorize.rubyforge.org 
 
 == DESCRIPTION:
   
