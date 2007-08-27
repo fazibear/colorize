@@ -10,10 +10,8 @@ module Rake
   class RDocTask
     alias_method :old_option_list, :option_list
     def option_list
-      result = old_option_list
       @template = "allison/allison.rb"
-      result << "-T" << quote(template) if template
-      result
+      old_option_list
     end
   end 
 end
