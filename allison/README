@@ -1,0 +1,55 @@
+
+Allison
+
+A modern, pretty RDoc template.
+
+== License
+
+Copyright 2007 Cloudburst, LLC. See included LICENSE file.
+
+= Usage
+
+== Installation
+
+Download a tarball from http://rubyforge.org/frs/?group_id=2835 and extract it to somewhere convenient. There is no gem version.
+
+== Rake task
+
+The best way to use the template is to set up a Rake task for your Ruby project or Rails app. In your <tt>Rakefile</tt>, add something like:
+    
+  require 'rake/rdoctask'
+  
+  Rake::RDocTask.new do |rdoc|
+        files = ['README', 'LICENSE', 'COPYING', 'lib/**/*.rb', 
+                'doc/**/*.rdoc', 'test/*.rb']
+        rdoc.rdoc_files.add(files)
+        rdoc.main = "README" # page to start on
+        rdoc.title = "My App's Documentation"
+        rdoc.template = "/path/to/allison/allison.rb"
+        rdoc.rdoc_dir = 'doc' # rdoc output folder
+        rdoc.options << '--line-numbers' << '--inline-source'
+  end
+
+Then you can run <tt>rake rdoc</tt> to invoke the task.
+  
+Pop-up source view is not supported. You have to use <tt>--inline-source</tt>.
+
+= Extras
+
+== Sample
+
+http://blog.evanweaver.com/files/allison_release.gif
+
+== Generating documentation for Rails
+
+If you want to generate documentation for Rails itself, there is a handy trick. Rails’ RDoc tasks obey the <tt>template</tt> environment variable. For instance, to document ActiveRecord with Allison, run:
+
+  cd vendor/rails/activerecord/
+  template='/path/to/allison/allison' rake rerdoc
+
+The template value should be the full path to the <tt>allison.rb</tt> file, minus the <tt>.rb</tt> (contrary to the Rake task).
+
+== Further resources
+
+* http://blog.evanweaver.com/pages/code#allison
+* http://rubyforge.org/forum/forum.php?forum_id=16451

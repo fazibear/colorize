@@ -1,10 +1,11 @@
 colorize
     by Michal Kalbarczyk (FaziBear)
-    http://colorize.rubyforge.org 
+    http://colorize.rubyforge.org
+    http://fazibear.prv.pl
 
 == DESCRIPTION:
   
-Ruby string class extension. It add some methods to set color, background color and text effect on console easier using ANSI escape sequences.
+Ruby string class extension. It add some methods to set color, background color and text effect on console easier. Uses ANSI escape sequences.
 
 == FEATURES/PROBLEMS:
   

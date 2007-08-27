@@ -3,17 +3,30 @@ require 'rubygems'
 require 'hoe'
 require "#{File.dirname(__FILE__)}/lib/colorize.rb"
 
-ENV['VERSION'] = Colorize::VERSION
+ENV['VERSION'] = String::COLORIZE_VERSION
 
-Hoe.new('colorize', Colorize::VERSION) do |p|
+# Little hack to set rdoc template
+module Rake
+  class RDocTask
+    alias_method :old_option_list, :option_list
+    def option_list
+      result = old_option_list
+      @template = "allison/allison.rb"
+      result << "-T" << quote(template) if template
+      result
+    end
+  end 
+end
+
+Hoe.new('colorize', String::COLORIZE_VERSION) do |p|
   p.rubyforge_name = 'colorize'
-  p.author = 'fazibear'
+  p.author = 'Michal Kalbarczyk (FaziBear)'
   p.email = 'fazibear@gmail.com'
-  p.summary = "Ruby string class extension. It add some methods to set color, background color and text effect on console easier using ANSI escape sequences."
-  p.description = p.paragraphs_of('README.txt', 2..5).join("\n\n")
-  p.url = p.paragraphs_of('README.txt', 0).first.split(/\n/)[1..-1]
-  p.changes = p.paragraphs_of('History.txt', 0..1).join("\n\n")
+  p.url = ['http://colorize.rubyforge.org', 'http://fazibear.prv.pl']
+  p.summary = "Add colors methods to string class"
+  p.description = "Ruby string class extension. It add some methods to set color, background color and text effect on console easier. Uses ANSI escape sequences."
   p.need_zip = true
+  p.remote_rdoc_dir = ''
 end
 
 desc "Generate Manifest.new for dist"
