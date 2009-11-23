@@ -2,11 +2,6 @@
 # Colorize String class extension.
 #
 class String
-  
-  #
-  # Version string
-  #
-  COLORIZE_VERSION = '0.5.6'
 
   #
   # Colors Hash
