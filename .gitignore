@@ -1,0 +1,6 @@
+# svn propset svn:ignore -F .svnignore .
+# svn propedit svn:ignore .
+doc
+pkg
+.rake_tasks
+*.gem

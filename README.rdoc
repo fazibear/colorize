@@ -1,5 +1,4 @@
-colorize
-    by Michal Kalbarczyk (FaziBear)
+== colorize
     http://colorize.rubyforge.org
     http://fazibear.prv.pl
 

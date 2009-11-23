@@ -1,7 +1,0 @@
-History.txt
-Manifest.txt
-README.txt
-Rakefile
-lib/colorize.rb
-test/test_helper.rb
-test/test_colorize.rb
