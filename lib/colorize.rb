@@ -78,7 +78,7 @@ class String
     return self unless STDOUT.isatty
     
     begin
-        require 'Win32/Console/ANSI' if PLATFORM =~ /win32/
+        require 'Win32/Console/ANSI' if RUBY_PLATFORM =~ /win32/
     rescue LoadError
         raise 'You must gem install win32console to use color on Windows'
     end

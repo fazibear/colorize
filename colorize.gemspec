@@ -5,44 +5,23 @@
 
 Gem::Specification.new do |s|
   s.name = %q{colorize}
-  s.version = "0.5.6"
+  s.version = "0.5.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["fazibear"]
-  s.date = %q{2009-11-23}
+  s.date = %q{2009-11-24}
   s.description = %q{Ruby string class extension. It add some methods to set color, background color and text effect on console easier. Uses ANSI escape sequences.}
   s.email = %q{fazibear@gmail.com}
   s.extra_rdoc_files = [
     "README.rdoc"
   ]
   s.files = [
-    "CHANGELOG.rdoc",
+    ".gitignore",
+     "CHANGELOG.rdoc",
      "README.rdoc",
      "Rakefile",
-     "allison/CHANGELOG",
-     "allison/LICENSE",
-     "allison/Manifest",
-     "allison/README",
-     "allison/Rakefile",
-     "allison/allison.css",
-     "allison/allison.gif",
-     "allison/allison.js",
-     "allison/allison.rb",
-     "allison/cache/BODY",
-     "allison/cache/CLASS_INDEX",
-     "allison/cache/CLASS_PAGE",
-     "allison/cache/FILE_INDEX",
-     "allison/cache/FILE_PAGE",
-     "allison/cache/FONTS",
-     "allison/cache/FR_INDEX_BODY",
-     "allison/cache/IMGPATH",
-     "allison/cache/INDEX",
-     "allison/cache/JAVASCRIPT",
-     "allison/cache/METHOD_INDEX",
-     "allison/cache/METHOD_LIST",
-     "allison/cache/SRC_PAGE",
-     "allison/cache/STYLE",
-     "allison/cache/URL",
+     "VERSION",
+     "colorize.gemspec",
      "lib/colorize.rb",
      "test/test_colorize.rb",
      "test/test_helper.rb"
