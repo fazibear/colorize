@@ -55,7 +55,7 @@ class String
       nil
     end
   end
-
+  
   public
 
   #
@@ -93,11 +93,11 @@ class String
       color_parameters[:color] = COLORS[params]
     end
     
-    color_parameters[:color] ||= @color || 9
-    color_parameters[:background] ||= @background || 9
-    color_parameters[:mode] ||= @mode || 0
+    color_parameters[:color] ||= @color ||= COLORS[:default]
+    color_parameters[:background] ||= @background ||= COLORS[:default]
+    color_parameters[:mode] ||= @mode ||= MODES[:default]
 
-    color_parameters[:uncolorized] ||= @uncolorized || self.dup
+    color_parameters[:uncolorized] ||= @uncolorized ||= self.dup
    
     # calculate bright mode
     color_parameters[:color] += 50 if color_parameters[:color] > 10
@@ -118,13 +118,15 @@ class String
   # Return true if sting is colorized
   #
   def colorized?
-    !@uncolorized.nil?
+    !defined?(@uncolorized).nil?
   end
 
   #
   # Make some color and on_color methods
   #
   COLORS.each_key do | key |
+    next if key == :default
+
     define_method key do
       self.colorize( :color => key )
     end
@@ -138,6 +140,8 @@ class String
   # Methods for modes
   #
   MODES.each_key do | key |
+    next if key == :default
+    
     define_method key do
       self.colorize( :mode => key )
     end
@@ -181,7 +185,7 @@ class String
       String.colors.reverse.each_with_index do | back, index |
         puts "#{"|".rjust(txt.length)*(size-index)} < #{back}"
       end 
+      ""
     end
   end
-  puts
 end

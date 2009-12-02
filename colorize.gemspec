@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{colorize}
-  s.version = "0.5.7"
+  s.version = "0.5.8"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["fazibear"]
-  s.date = %q{2009-11-24}
+  s.date = %q{2009-12-02}
   s.description = %q{Ruby string class extension. It add some methods to set color, background color and text effect on console easier. Uses ANSI escape sequences.}
   s.email = %q{fazibear@gmail.com}
   s.extra_rdoc_files = [
