@@ -1,4 +1,8 @@
-== 0.5.7 / 2000-11-24
+== 0.5.8 / 2009-12-02
+  * code cleanups
+  * removed 'ruby -w' warnings
+
+== 0.5.7 / 2009-11-24
   * moved to github/gemcutter
   * 1.9 compatibile
 

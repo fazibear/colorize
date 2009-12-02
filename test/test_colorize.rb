@@ -40,4 +40,10 @@ class TestColorize < Test::Unit::TestCase
   def test_uncolorize
     assert "This is uncolorized".blue.on_red.uncolorize == "This is uncolorized"
   end
+
+  def test_colorized?
+    assert "Red".red.colorized? == true
+    assert "Blue".colorized? == false
+    assert "Green".blue.green.uncolorize.colorized? == false
+  end
 end
