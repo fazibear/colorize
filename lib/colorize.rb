@@ -66,21 +66,21 @@ class String
   #   puts "This is blue".colorize( :blue )
   #   puts "This is light blue".colorize( :light_blue )
   #   puts "This is also blue".colorize( :color => :blue )
-  #   puts "This is blue with red background".colorize( :color => :light_blue, :background => :red )
-  #   puts "This is blue with red background".colorize( :light_blue ).colorize( :background => :red )
+  #   puts "This is light blue with red background".colorize( :color => :light_blue, :background => :red )
+  #   puts "This is light blue with red background".colorize( :light_blue ).colorize( :background => :red )
   #   puts "This is blue text on red".blue.on_red
   #   puts "This is red on blue".colorize( :red ).on_blue
   #   puts "This is red on blue and underline".colorize( :red ).on_blue.underline
   #   puts "This is blue text on red".blue.on_red.blink
+  #   puts "This is uncolorized".blue.on_red.uncolorize
   #
   def colorize( params )
-    
     return self unless STDOUT.isatty
     
     begin
-        require 'Win32/Console/ANSI' if RUBY_PLATFORM =~ /win32/
+      require 'Win32/Console/ANSI' if RUBY_PLATFORM =~ /win32/
     rescue LoadError
-        raise 'You must gem install win32console to use color on Windows'
+      raise 'You must gem install win32console to use colorize on Windows'
     end
     
     color_parameters = {}
@@ -104,47 +104,43 @@ class String
 
     color_parameters[:background] += 50 if color_parameters[:background] > 10
 
-    return "\033[#{color_parameters[:mode]};#{color_parameters[:color]+30};#{color_parameters[:background]+40}m#{color_parameters[:uncolorized]}\033[0m".set_color_parameters( color_parameters )
+    "\033[#{color_parameters[:mode]};#{color_parameters[:color]+30};#{color_parameters[:background]+40}m#{color_parameters[:uncolorized]}\033[0m".set_color_parameters( color_parameters )
   end
 
-  
   #
   # Return uncolorized string
   #
   def uncolorize
-    return @uncolorized || self
+    @uncolorized || self
   end
   
   #
   # Return true if sting is colorized
   #
   def colorized?
-    return !@uncolorized.nil?
+    !@uncolorized.nil?
   end
 
   #
   # Make some color and on_color methods
   #
   COLORS.each_key do | key |
-    eval <<-"end_eval"
-      def #{key.to_s}
-        return self.colorize( :color => :#{key.to_s} )
-      end
-      def on_#{key.to_s}
-        return self.colorize( :background => :#{key.to_s} )
-      end
-    end_eval
+    define_method key do
+      self.colorize( :color => key )
+    end
+    
+    define_method "on_#{key}" do
+      self.colorize( :background => key )
+    end
   end
 
   #
   # Methods for modes
   #
   MODES.each_key do | key |
-    eval <<-"end_eval"
-      def #{key.to_s}
-        return self.colorize( :mode => :#{key.to_s} )
-      end
-    end_eval
+    define_method key do
+      self.colorize( :mode => key )
+    end
   end
 
   class << self
