@@ -75,8 +75,6 @@ class String
   #   puts "This is uncolorized".blue.on_red.uncolorize
   #
   def colorize( params )
-    return self unless STDOUT.isatty
-    
     begin
       require 'Win32/Console/ANSI' if RUBY_PLATFORM =~ /win32/
     rescue LoadError
