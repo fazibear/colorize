@@ -153,22 +153,14 @@ class String
     # Return array of available modes used by colorize method
     #
     def modes
-      keys = []
-      MODES.each_key do | key |
-        keys << key
-      end
-      keys
+      MODES.keys
     end
 
     #
     # Return array of available colors used by colorize method
     #
     def colors
-      keys = []
-      COLORS.each_key do | key |
-        keys << key
-      end
-      keys
+      COLORS.keys
     end 
 
     #
