@@ -32,7 +32,7 @@ class String
   #
   MODES = {
     :default        => 0, # Turn off all attributes
-    #:bright        => 1, # Set bright mode
+    :bold           => 1, # Set bold mode
     :underline      => 4, # Set underline mode
     :blink          => 5, # Set blink mode
     :swap           => 7, # Exchange foreground and background colors
