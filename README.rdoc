@@ -4,7 +4,7 @@
 
 == DESCRIPTION:
   
-Ruby string class extension. It add some methods to set color, background color and text effect on console easier. Uses ANSI escape sequences.
+Ruby String class extension. Adds methods to set text color, background color and, text effects on ruby console and command line output, using ANSI escape sequences.
 
 == FEATURES/PROBLEMS:
   
@@ -44,7 +44,7 @@ Ruby string class extension. It add some methods to set color, background color 
 
 == LICENSE:
 
-colorize - Ruby string class extension. It add some methods to set color, background color and text effect on console easier using ANSI escape sequences.
+colorize - Ruby String class extension. Adds methods to set text color, background color and, text effects on ruby console and command line output, using ANSI escape sequences.
 
 Copyright (C) 2007 Michal Kalbarczyk
 
