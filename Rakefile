@@ -5,10 +5,10 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gemspec|
     gemspec.name = "colorize"
-    gemspec.summary = "Add colors methods to string class"
+    gemspec.summary = "Add color methods to String class"
     gemspec.email = "fazibear@gmail.com"
     gemspec.homepage = "http://github.com/fazibear/colorize"
-    gemspec.description = "Ruby string class extension. It add some methods to set color, background color and text effect on console easier. Uses ANSI escape sequences."
+    gemspec.description = "Ruby String class extension. Adds methods to set text color, background color and, text effects on ruby console and command line output, using ANSI escape sequences."
     gemspec.authors = ["fazibear"]
   end
 rescue LoadError
