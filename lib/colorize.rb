@@ -42,7 +42,7 @@ class String
   protected
   
   #
-  # Set color values in new string intance
+  # Set color values in new string instance
   #
   def set_color_parameters( params )
     if (params.instance_of?(Hash))
@@ -99,7 +99,7 @@ class String
 
     color_parameters[:uncolorized] ||= @uncolorized ||= self.dup
    
-    # calculate bright mode
+    # Calculate bright mode
     color_parameters[:color] += 50 if color_parameters[:color] > 10
 
     color_parameters[:background] += 50 if color_parameters[:background] > 10
@@ -172,7 +172,7 @@ class String
     end 
 
     #
-    # Display color matrix with color names.
+    # Display color matrix with color names
     #
     def color_matrix( txt = "[X]" )
       size = String.colors.length
