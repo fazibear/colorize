@@ -33,6 +33,8 @@ Ruby string class extension. It add some methods to set color, background color 
   String.modes  - return array of all possible modes
   String.color_matrix - displays color matrix with color names
   String.color_matrix( "FOO" ) - display color matrix with "FOO" text
+  String.force_color!(true, &block) - Force to use colors (scoped to the block if a block is given)
+  String.force_color!(false, &block) - Force to never use colors (scoped to the block if a block is given)
 
 == REQUIREMENTS:
 
