@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/test_helper.rb'
 
-class TestColorize < Test::Unit::TestCase
+class TestColorize < MiniTest::Unit::TestCase
   def test_blue_symbol
     assert "This is blue".colorize(:blue) == "\e[0;34;49mThis is blue\e[0m"
   end
@@ -45,5 +45,36 @@ class TestColorize < Test::Unit::TestCase
     assert "Red".red.colorized? == true
     assert "Blue".colorized? == false
     assert "Green".blue.green.uncolorize.colorized? == false
+  end
+
+  def test_color_when_tty
+    STDOUT.stub(:isatty, true) do
+      assert "Blue".blue.colorized? == true
+    end
+  end
+
+  def test_no_color_when_no_tty
+    STDOUT.stub(:isatty, false) do
+      assert "Blue".blue.colorized? == false
+    end
+  end
+
+  def test_color_when_no_tty_but_forced
+    STDOUT.stub(:isatty, false) do
+      String.force_color!
+      assert "Blue".blue.colorized? == true
+      String.force_color!(false)
+
+      assert "Blue".blue.colorized? == false
+    end
+  end
+
+  def test_color_when_no_tty_but_forced_block
+    STDOUT.stub(:isatty, false) do
+      String.force_color! do
+        assert "Blue".blue.colorized? == true
+      end
+      assert "Blue".blue.colorized? == false
+    end
   end
 end

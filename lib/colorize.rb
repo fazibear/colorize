@@ -75,7 +75,9 @@ class String
   #   puts "This is uncolorized".blue.on_red.uncolorize
   #
   def colorize( params )
-    return self unless STDOUT.isatty
+    if not STDOUT.isatty
+      return self unless self.class.forced_to_colorize?
+    end
     
     begin
       require 'Win32/Console/ANSI' if RUBY_PLATFORM =~ /win32/
@@ -187,5 +189,25 @@ class String
       end 
       ""
     end
+
+    #
+    # Checks if we're forced to colorize
+    #
+    def forced_to_colorize?
+      self.force_color == true
+    end
+
+    # Force to use colors
+    def force_color!(force=true)
+      original = self.force_color
+      self.force_color = force
+      if block_given?
+        yield
+        self.force_color = original
+      end
+    end
+
+    protected
+    attr_accessor :force_color
   end
 end
