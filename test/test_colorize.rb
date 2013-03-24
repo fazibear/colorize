@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/test_helper.rb'
 
-class TestColorize < Test::Unit::TestCase
+class TestColorize < MiniTest::Unit::TestCase
   def test_blue_symbol
     assert "This is blue".colorize(:blue) == "\e[0;34;49mThis is blue\e[0m"
   end
