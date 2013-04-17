@@ -40,7 +40,9 @@ Ruby string class extension. It add some methods to set color, background color 
 
 == INSTALL:
 
-* sudo gem install colorize
+* gem install colorize
+
+*Note:* You may need to use sudo to install gems
 
 == LICENSE:
 
