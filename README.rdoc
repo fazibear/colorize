@@ -1,18 +1,18 @@
-== colorize
-    http://colorize.rubyforge.org
-    http://fazibear.prv.pl
-
-== DESCRIPTION:
+= Colorize
   
-Ruby string class extension. It add some methods to set color, background color and text effect on console easier. Uses ANSI escape sequences.
+Colorize is a ruby string class extension. It add some methods to set color, background color and text effect on console easier. Uses ANSI escape sequences.
 
-== FEATURES/PROBLEMS:
+http://colorize.rubyforge.org
+
+http://fazibear.prv.pl
+
+== Features
   
-* change string color
-* change string background
-* change string effect
+* Change string color
+* Change string background
+* Change string effect
 
-== SYNOPSIS:
+== Synopsis
 
   Some usage samples:
 
@@ -34,15 +34,17 @@ Ruby string class extension. It add some methods to set color, background color 
   String.color_matrix - displays color matrix with color names
   String.color_matrix( "FOO" ) - display color matrix with "FOO" text
 
-== REQUIREMENTS:
+== Requirements
 
 * Win32/Console/ANSI (for Windows)
 
-== INSTALL:
+== Install
 
-* sudo gem install colorize
+* gem install colorize
 
-== LICENSE:
+*Note:* You may need to use sudo to install gems
+
+== License
 
 colorize - Ruby string class extension. It add some methods to set color, background color and text effect on console easier using ANSI escape sequences.
 
