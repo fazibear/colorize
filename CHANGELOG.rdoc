@@ -1,3 +1,11 @@
+== 0.6.0 / 2013-09-25
+  * code cleanups
+  * bold mode fixed
+  * STDOUT.isatty condition removed
+  * doc updated
+  * jeweler tasks removed
+  * Rakefile updated
+
 == 0.5.8 / 2009-12-02
   * code cleanups
   * removed 'ruby -w' warnings
