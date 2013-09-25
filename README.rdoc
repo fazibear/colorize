@@ -1,7 +1,3 @@
-== colorize
-    http://colorize.rubyforge.org
-    http://fazibear.prv.pl
-
 == DESCRIPTION:
   
 Ruby String class extension. Adds methods to set text color, background color and, text effects on ruby console and command line output, using ANSI escape sequences.
