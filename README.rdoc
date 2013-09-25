@@ -2,13 +2,13 @@
   
 Ruby String class extension. Adds methods to set text color, background color and, text effects on ruby console and command line output, using ANSI escape sequences.
 
-== FEATURES/PROBLEMS:
+== FEATURES:
   
 * change string color
 * change string background
 * change string effect
 
-== SYNOPSIS:
+== USAGE:
 
   Some usage samples:
 
