@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
      "CHANGELOG.rdoc",
      "README.rdoc",
      "Rakefile",
-     "VERSION",
      "colorize.gemspec",
      "lib/colorize.rb",
      "test/test_colorize.rb",
