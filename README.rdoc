@@ -1,14 +1,14 @@
-== DESCRIPTION:
+== DESCRIPTION
   
 Ruby String class extension. Adds methods to set text color, background color and, text effects on ruby console and command line output, using ANSI escape sequences.
 
-== FEATURES:
+== FEATURES
   
 * change string color
 * change string background
 * change string effect
 
-== USAGE:
+== USAGE
 
   Some usage samples:
 
@@ -30,17 +30,17 @@ Ruby String class extension. Adds methods to set text color, background color an
   String.color_matrix - displays color matrix with color names
   String.color_matrix( "FOO" ) - display color matrix with "FOO" text
 
-== REQUIREMENTS:
+== REQUIREMENTS
 
 * Win32/Console/ANSI (for Windows)
 
-== INSTALL:
+== INSTALL
 
 * gem install colorize
 
 *Note:* You may need to use sudo to install gems
 
-== LICENSE:
+== LICENSE
 
 colorize - Ruby String class extension. Adds methods to set text color, background color and, text effects on ruby console and command line output, using ANSI escape sequences.
 
