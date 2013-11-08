@@ -16,7 +16,7 @@ class String
     :cyan           => 6,
     :white          => 7,
     :default        => 9,
-    
+
     :light_black    => 10,
     :light_red      => 11,
     :light_green    => 12,
@@ -38,24 +38,22 @@ class String
     :swap           => 7, # Exchange foreground and background colors
     :hide           => 8  # Hide text (foreground color would be the same as background)
   }
-  
+
   protected
-  
+
   #
   # Set color values in new string instance
   #
   def set_color_parameters(params)
     if (params.instance_of?(Hash))
-      @color = params[:color]
-      @background = params[:background]
-      @mode = params[:mode]
+      @color       = params[:color]
+      @background  = params[:background]
+      @mode        = params[:mode]
       @uncolorized = params[:uncolorized]
       self
-    else
-      nil
     end
   end
-  
+
   public
 
   #
@@ -80,23 +78,23 @@ class String
     rescue LoadError
       raise 'You must gem install win32console to use colorize on Windows'
     end
-    
+
     color_parameters = {}
 
     if (params.instance_of?(Hash))
-      color_parameters[:color] = COLORS[params[:color]]
+      color_parameters[:color]      = COLORS[params[:color]]
       color_parameters[:background] = COLORS[params[:background]]
-      color_parameters[:mode] = MODES[params[:mode]]
+      color_parameters[:mode]       = MODES[params[:mode]]
     elsif (params.instance_of?(Symbol))
       color_parameters[:color] = COLORS[params]
     end
-    
+
     color_parameters[:color] ||= @color ||= COLORS[:default]
     color_parameters[:background] ||= @background ||= COLORS[:default]
     color_parameters[:mode] ||= @mode ||= MODES[:default]
 
     color_parameters[:uncolorized] ||= @uncolorized ||= self.dup
-   
+
     # Calculate bright mode
     color_parameters[:color] += 50 if color_parameters[:color] > 10
 
@@ -111,12 +109,12 @@ class String
   def uncolorize
     @uncolorized || self
   end
-  
+
   #
   # Return true if sting is colorized
   #
   def colorized?
-    !defined?(@uncolorized).nil?
+    !!@uncolorized
   end
 
   #
@@ -128,7 +126,7 @@ class String
     define_method key do
       self.colorize(:color => key)
     end
-    
+
     define_method "on_#{key}" do
       self.colorize(:background => key)
     end
@@ -139,14 +137,14 @@ class String
   #
   MODES.each_key do |key|
     next if key == :default
-    
+
     define_method key do
       self.colorize(:mode => key)
     end
   end
 
   class << self
-    
+
     #
     # Return array of available modes used by colorize method
     #
@@ -159,23 +157,24 @@ class String
     #
     def colors
       COLORS.keys
-    end 
+    end
 
     #
     # Display color matrix with color names
     #
-    def color_matrix(txt = "[X]")
+    def color_matrix(txt = '[X]')
       size = String.colors.length
       String.colors.each do |color|
         String.colors.each do |back|
-         print txt.colorize(:color => color, :background => back)
+          print txt.colorize(:color => color, :background => back)
         end
         puts " < #{color}"
       end
       String.colors.reverse.each_with_index do |back, index|
         puts "#{"|".rjust(txt.length)*(size-index)} < #{back}"
-      end 
-      ""
+      end
+      ''
     end
+    
   end
 end
