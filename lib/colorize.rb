@@ -111,7 +111,7 @@ class String
   end
 
   #
-  # Return true if sting is colorized
+  # Return true if string is colorized
   #
   def colorized?
     !!@uncolorized
@@ -175,6 +175,6 @@ class String
       end
       ''
     end
-    
+
   end
 end
