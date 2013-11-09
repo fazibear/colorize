@@ -1,5 +1,4 @@
 [![Gem Version](https://badge.fury.io/rb/colorize.png)](http://badge.fury.io/rb/colorize)
-
 # Colorize
   
 Ruby String class extension. Adds methods to set text color, background color and, text effects on ruby console and command line output, using ANSI escape sequences.
@@ -10,7 +9,7 @@ Ruby String class extension. Adds methods to set text color, background color an
 * Change string background
 * Change string effect
 
-## INSTALL
+## Install
 
     gem install colorize
 
@@ -31,7 +30,7 @@ Some usage samples:
     puts "This is blue text on red".blue.on_red.blink
     puts "This is uncolored".blue.on_red.uncolorize
 
-Class methods:
+    #Class methods
 
     String.colors				# return array of all possible colors names
     String.modes				# return array of all possible modes
@@ -43,7 +42,7 @@ Class methods:
 * Win32/Console/ANSI (for Windows)
 
 
-## LICENSE
+## License
 
 colorize - Ruby String class extension. Adds methods to set text color, background color and, text effects on ruby console and command line output, using ANSI escape sequences.
 
