@@ -15,8 +15,9 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   
   s.files = [
-     "CHANGELOG.rdoc",
-     "README.rdoc",
+     "LICENSE",
+     "CHANGELOG",
+     "README.md",
      "Rakefile",
      "colorize.gemspec",
      "lib/colorize.rb",
@@ -26,8 +27,5 @@ Gem::Specification.new do |s|
   s.test_files = [
     "test/test_helper.rb",
     "test/test_colorize.rb"
-  ]
-  s.extra_rdoc_files = [
-    "README.rdoc"
   ]
 end
