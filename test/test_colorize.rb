@@ -18,7 +18,7 @@ class TestColorize < Test::Unit::TestCase
   end
  
   def test_light_blue_with_red_background_symbol_and_hash
-    assert 'This is light blue with red background'.colorize( :light_blue ).colorize( :background => :red ) == "\e[0;144;41mThis is light blue with red background\e[0m"
+    assert 'This is light blue with red background'.colorize( :light_blue ).colorize( :background => :red ) == "\e[0;94;41mThis is light blue with red background\e[0m"
   end
  
   def test_blue_with_red_background_method
@@ -35,6 +35,10 @@ class TestColorize < Test::Unit::TestCase
 
   def test_blue_with_red_background_and_blink_methods
     assert 'This is blue text on red'.blue.on_red.blink == "\e[5;34;41mThis is blue text on red\e[0m"
+  end
+  
+  def test_frozen_strings
+    assert 'This is blue text on red'.freeze.blue.on_red.blink == "\e[5;34;41mThis is blue text on red\e[0m"
   end
 
   def test_uncolorize

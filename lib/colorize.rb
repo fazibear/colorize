@@ -3,6 +3,11 @@
 #
 class String
 
+  START_PATTERN = /^\033\[(?<mode>[0-9]+);(?<color>[0-9]+);(?<background>[0-9]+)m/
+  END_PATTERN = /\033\[0m$/
+  COLOR_OFFSET = 30
+  BACKGROUND_OFFSET = 40
+    
   #
   # Colors Hash
   #
@@ -17,14 +22,14 @@ class String
     :white          => 7,
     :default        => 9,
 
-    :light_black    => 10,
-    :light_red      => 11,
-    :light_green    => 12,
-    :light_yellow   => 13,
-    :light_blue     => 14,
-    :light_magenta  => 15,
-    :light_cyan     => 16,
-    :light_white    => 17
+    :light_black    => 60,
+    :light_red      => 61,
+    :light_green    => 62,
+    :light_yellow   => 63,
+    :light_blue     => 64,
+    :light_magenta  => 65,
+    :light_cyan     => 66,
+    :light_white    => 67
   }
 
   #
@@ -38,23 +43,6 @@ class String
     :swap           => 7, # Exchange foreground and background colors
     :hide           => 8  # Hide text (foreground color would be the same as background)
   }
-
-  protected
-
-  #
-  # Set color values in new string instance
-  #
-  def set_color_parameters(params)
-    if (params.instance_of?(Hash))
-      @color       = params[:color]
-      @background  = params[:background]
-      @mode        = params[:mode]
-      @uncolorized = params[:uncolorized]
-      self
-    end
-  end
-
-  public
 
   #
   # Change color of string
@@ -78,43 +66,40 @@ class String
     rescue LoadError
       raise 'You must gem install win32console to use colorize on Windows'
     end
+    
+    params = (COLORS[params] ? {color: params} : params)
+    color, background, mode = COLORS[params[:color]], COLORS[params[:background]], MODES[params[:mode]]
+    color += COLOR_OFFSET if color
+    background += BACKGROUND_OFFSET if background
 
-    color_parameters = {}
-
-    if (params.instance_of?(Hash))
-      color_parameters[:color]      = COLORS[params[:color]]
-      color_parameters[:background] = COLORS[params[:background]]
-      color_parameters[:mode]       = MODES[params[:mode]]
-    elsif (params.instance_of?(Symbol))
-      color_parameters[:color] = COLORS[params]
+    str = ''
+    if match = self.match(START_PATTERN)
+      color ||= match[:color].to_i
+      background ||= match[:background].to_i
+      mode ||= match[:mode].to_i
+      str << self.gsub(START_PATTERN, '')
+    else
+      color ||= COLORS[:default] + COLOR_OFFSET
+      background ||= COLORS[:default] + BACKGROUND_OFFSET
+      mode ||= MODES[:default]
+      str << "#{self}\033[0m"
     end
-
-    color_parameters[:color] ||= @color ||= COLORS[:default]
-    color_parameters[:background] ||= @background ||= COLORS[:default]
-    color_parameters[:mode] ||= @mode ||= MODES[:default]
-
-    color_parameters[:uncolorized] ||= @uncolorized ||= self.dup
-
-    # Calculate bright mode
-    color_parameters[:color] += 50 if color_parameters[:color] > 10
-
-    color_parameters[:background] += 50 if color_parameters[:background] > 10
-
-    "\033[#{color_parameters[:mode]};#{color_parameters[:color]+30};#{color_parameters[:background]+40}m#{color_parameters[:uncolorized]}\033[0m".set_color_parameters(color_parameters)
+    
+    str.prepend "\033[#{mode};#{color};#{background}m"
   end
 
   #
   # Return uncolorized string
   #
   def uncolorize
-    @uncolorized || self
+    self.gsub(Regexp.union(START_PATTERN, END_PATTERN), '')
   end
 
   #
   # Return true if string is colorized
   #
   def colorized?
-    !!@uncolorized
+    !!(self =~ START_PATTERN)
   end
 
   #
