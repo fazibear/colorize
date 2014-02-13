@@ -36,6 +36,10 @@ class TestColorize < Test::Unit::TestCase
   def test_blue_with_red_background_and_blink_methods
     assert 'This is blue text on red'.blue.on_red.blink == "\e[5;34;41mThis is blue text on red\e[0m"
   end
+  
+  def test_frozen_strings
+    assert 'This is blue text on red'.freeze.blue.on_red.blink == "\e[5;34;41mThis is blue text on red\e[0m"
+  end
 
   def test_uncolorize
     assert 'This is uncolorized'.blue.on_red.uncolorize == "This is uncolorized"
