@@ -1,3 +1,8 @@
+== 0.7.0 / 2014-03-12
+  * refactored to use regexp pattern matching
+  * works with frozen strings
+  * works with concatenated string
+
 == 0.6.0 / 2013-09-25
   * code cleanups
   * bold mode fixed
