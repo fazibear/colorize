@@ -78,7 +78,7 @@ class String
         match[0] = MODES[params[:mode]] if params[:mode] && MODES[params[:mode]]
         match[1] = COLORS[params[:color]] + COLOR_OFFSET if params[:color] && COLORS[params[:color]]
         match[2] = COLORS[params[:background]] + BACKGROUND_OFFSET if params[:background] && COLORS[params[:background]]
-      elsif (params.instance_of?(Symbol)) && params
+      elsif (params.instance_of?(Symbol))
         match[1] = COLORS[params] + COLOR_OFFSET if params && COLORS[params]
       end
 
