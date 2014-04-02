@@ -75,11 +75,11 @@ class String
       match[3] ||= match[4]
 
       if (params.instance_of?(Hash))
-        match[0] = MODES[params[:mode]] if params[:mode]
-        match[1] = COLORS[params[:color]] + COLOR_OFFSET if params[:color]
-        match[2] = COLORS[params[:background]] + BACKGROUND_OFFSET if params[:background]
+        match[0] = MODES[params[:mode]] if params[:mode] && MODES[params[:mode]]
+        match[1] = COLORS[params[:color]] + COLOR_OFFSET if params[:color] && COLORS[params[:color]]
+        match[2] = COLORS[params[:background]] + BACKGROUND_OFFSET if params[:background] && COLORS[params[:background]]
       elsif (params.instance_of?(Symbol)) && params
-        match[1] = (COLORS[params] || COLORS[:default]) + COLOR_OFFSET
+        match[1] = COLORS[params] + COLOR_OFFSET if params && COLORS[params]
       end
 
       str << "\033[#{match[0]};#{match[1]};#{match[2]}m#{match[3]}\033[0m"
