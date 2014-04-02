@@ -5,6 +5,10 @@ class TestColorize < Test::Unit::TestCase
     assert 'This is blue'.colorize(:blue) == "\e[0;34;49mThis is blue\e[0m"
   end
 
+  def test_incorrect_symbol
+    assert 'This is incorrect color'.colorize(:bold) == "\e[0;39;49mThis is incorrect color\e[0m"
+  end
+
   def test_blue_hash
     assert 'This is also blue'.colorize(:color => :blue) == "\e[0;34;49mThis is also blue\e[0m"
   end
