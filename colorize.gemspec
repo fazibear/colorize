@@ -22,10 +22,8 @@ Gem::Specification.new do |s|
     'colorize.gemspec',
     'lib/colorize.rb',
     'test/test_colorize.rb',
-    'test/test_helper.rb'
   ]
   s.test_files = [
-    'test/test_helper.rb',
     'test/test_colorize.rb'
   ]
 end
