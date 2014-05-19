@@ -39,7 +39,7 @@ class String
     :hide           => 8  # Hide text (foreground color would be the same as background)
   }
 
-  REGEXP_PATTERN = /\033\[([0-9]+);([0-9]+);([0-9]+)m(.+?)\033\[0m|([^\033]+)/
+  REGEXP_PATTERN = /\033\[([0-9]+);([0-9]+);([0-9]+)m(.+?)\033\[0m|([^\033]+)/m
   COLOR_OFFSET = 30
   BACKGROUND_OFFSET = 40
   

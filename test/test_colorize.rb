@@ -80,10 +80,17 @@ class TestColorize < Test::Unit::TestCase
   end
 
   def test_concatenated_strings_uncolorize
-    assert ('none' + 'red'.red + 'none' + 'blue'.blue + 'none').uncolorize == "nonerednonebluenone"
+    assert_equal ('none' + 'red'.red + 'none' + 'blue'.blue + 'none').uncolorize,
+                 "nonerednonebluenone"
   end
 
   def test_frozen_strings
-    assert 'This is blue text on red'.freeze.blue.on_red.blink == "\e[5;34;41mThis is blue text on red\e[0m"
+    assert_equal 'This is blue text on red'.freeze.blue.on_red.blink,
+                 "\e[5;34;41mThis is blue text on red\e[0m"
+  end
+  
+  def test_new_line
+    assert_equal "This is blue\ntext on red".freeze.blue.on_red.blink,
+                 "\e[5;34;41mThis is blue\ntext on red\e[0m"
   end
 end
