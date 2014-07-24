@@ -1,4 +1,4 @@
-colorize [![Gem Version](https://badge.fury.io/rb/colorize.svg)](http://badge.fury.io/rb/colorize)
+colorize [![Gem Version](https://badge.fury.io/rb/colorize.svg)](http://badge.fury.io/rb/colorize) [![Build Status](https://travis-ci.org/fazibear/colorize.svg?branch=master)](https://travis-ci.org/fazibear/colorize)
 ========
   
 Ruby String class extension. Adds methods to set text color, background color and, text effects on ruby console and command line output, using ANSI escape sequences.
