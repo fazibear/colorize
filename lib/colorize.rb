@@ -63,7 +63,7 @@ class String
   #
   def colorize(params)
     begin
-      require 'Win32/Console/ANSI' if RUBY_PLATFORM =~ /win32/
+      require 'Win32/Console/ANSI' if RUBY_VERSION < "2.0.0" && RUBY_PLATFORM =~ /win32/
     rescue LoadError
       raise 'You must gem install win32console to use colorize on Windows'
     end
