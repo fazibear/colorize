@@ -67,7 +67,9 @@ class String
     rescue LoadError
       raise 'You must gem install win32console to use colorize on Windows'
     end
-    
+
+    return self unless self.class.colorize_enabled?
+
     self.scan(REGEXP_PATTERN).inject("") do |str, match|
       match[0] ||= MODES[:default]
       match[1] ||= COLORS[:default] + COLOR_OFFSET
@@ -131,6 +133,15 @@ class String
   end
 
   class << self
+
+    #
+    # Disable or enable the colorization by setting it to false/true
+    #
+    attr_accessor :colorize_enabled
+
+    def colorize_enabled?
+      colorize_enabled.nil? ? true : colorize_enabled
+    end
 
     #
     # Return array of available modes used by colorize method

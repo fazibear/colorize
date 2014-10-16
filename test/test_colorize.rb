@@ -2,6 +2,20 @@ require 'test/unit'
 require File.dirname(__FILE__) + '/../lib/colorize'
 
 class TestColorize < Test::Unit::TestCase
+  def setup
+    String.colorize_enabled = true
+  end
+
+  def test_enabling_disabling
+    String.colorize_enabled = false
+    refute String.colorize_enabled?
+    assert_equal 'This is blue'.colorize(:blue),
+                 'This is blue'
+    String.colorize_enabled = true
+    assert_equal 'This is blue'.colorize(:blue),
+                 "\e[0;34;49mThis is blue\e[0m"
+  end
+
   def test_blue_symbol
     assert_equal 'This is blue'.colorize(:blue),
                  "\e[0;34;49mThis is blue\e[0m"
