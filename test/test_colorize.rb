@@ -8,7 +8,7 @@ class TestColorize < Test::Unit::TestCase
 
   def test_enabling_disabling
     String.colorize_enabled = false
-    refute String.colorize_enabled?
+    assert !String.colorize_enabled?
     assert_equal 'This is blue'.colorize(:blue),
                  'This is blue'
     String.colorize_enabled = true
