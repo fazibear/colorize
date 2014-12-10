@@ -5,6 +5,9 @@ class String
 
   REGEXP_PATTERN = /\033\[([0-9]+);([0-9]+);([0-9]+)m(.+?)\033\[0m|([^\033]+)/m
 
+  #
+  # Colors Hash
+  #
   COLORS = {
     :black   => 0, :light_black    => 60,
     :red     => 1, :light_red      => 61,
@@ -16,14 +19,6 @@ class String
     :white   => 7, :light_white    => 67,
     :default => 9
   }
-
-  def color(color)
-    COLORS[color] + 30
-  end
-
-  def background_color(color)
-    COLORS[color] + 40
-  end
 
   #
   # Modes Hash
@@ -37,6 +32,23 @@ class String
     :hide      => 8  # Hide text (foreground color would be the same as background)
   }
 
+  #
+  # Color for foreground (offset 30)
+  #
+  def color(color)
+    COLORS[color] + 30
+  end
+
+  #
+  # Color for background (offset 40)
+  #
+  def background_color(color)
+    COLORS[color] + 40
+  end
+
+  #
+  # Mode
+  #
   def mode(mode)
     MODES[mode]
   end
