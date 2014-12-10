@@ -3,47 +3,43 @@
 #
 class String
 
-  #
-  # Colors Hash
-  #
-  COLORS = {
-    :black          => 0,
-    :red            => 1,
-    :green          => 2,
-    :yellow         => 3,
-    :blue           => 4,
-    :magenta        => 5,
-    :cyan           => 6,
-    :white          => 7,
-    :default        => 9,
+  REGEXP_PATTERN = /\033\[([0-9]+);([0-9]+);([0-9]+)m(.+?)\033\[0m|([^\033]+)/m
 
-    :light_black    => 60,
-    :light_red      => 61,
-    :light_green    => 62,
-    :light_yellow   => 63,
-    :light_blue     => 64,
-    :light_magenta  => 65,
-    :light_cyan     => 66,
-    :light_white    => 67
+  COLORS = {
+    :black   => 0, :light_black    => 60,
+    :red     => 1, :light_red      => 61,
+    :green   => 2, :light_green    => 62,
+    :yellow  => 3, :light_yellow   => 63,
+    :blue    => 4, :light_blue     => 64,
+    :magenta => 5, :light_magenta  => 65,
+    :cyan    => 6, :light_cyan     => 66,
+    :white   => 7, :light_white    => 67,
+    :default => 9
   }
+
+  def color(color)
+    COLORS[color] + 30
+  end
+
+  def background_color(color)
+    COLORS[color] + 40
+  end
 
   #
   # Modes Hash
   #
   MODES = {
-    :default        => 0, # Turn off all attributes
-    :bold           => 1, # Set bold mode
-    :underline      => 4, # Set underline mode
-    :blink          => 5, # Set blink mode
-    :swap           => 7, # Exchange foreground and background colors
-    :hide           => 8  # Hide text (foreground color would be the same as background)
+    :default   => 0, # Turn off all attributes
+    :bold      => 1, # Set bold mode
+    :underline => 4, # Set underline mode
+    :blink     => 5, # Set blink mode
+    :swap      => 7, # Exchange foreground and background colors
+    :hide      => 8  # Hide text (foreground color would be the same as background)
   }
 
-  REGEXP_PATTERN = /\033\[([0-9]+);([0-9]+);([0-9]+)m(.+?)\033\[0m|([^\033]+)/m
-  COLOR_OFFSET = 30
-  BACKGROUND_OFFSET = 40
-
-  public
+  def mode(mode)
+    MODES[mode]
+  end
 
   #
   # Change color of string
@@ -63,7 +59,6 @@ class String
   #
   def colorize(params)
     windows_requires
-
     scan(REGEXP_PATTERN).inject('') do |str, match|
       set_defaults(match)
       set_from_params(match, params)
@@ -130,9 +125,9 @@ class String
   # Set default colors
   #
   def set_defaults(match)
-    match[0] ||= MODES[:default]
-    match[1] ||= COLORS[:default] + COLOR_OFFSET
-    match[2] ||= COLORS[:default] + BACKGROUND_OFFSET
+    match[0] ||= mode(:default)
+    match[1] ||= color(:default)
+    match[2] ||= background_color(:default)
     match[3] ||= match[4]
   end
 
@@ -150,39 +145,24 @@ class String
   # Set colors from params hash
   #
   def set_from_hash(match, hash)
-    match[0] = MODES[hash[:mode]] if hash[:mode] && MODES[hash[:mode]]
-    match[1] = COLORS[hash[:color]] + COLOR_OFFSET if hash[:color] && COLORS[hash[:color]]
-    match[2] = COLORS[hash[:background]] + BACKGROUND_OFFSET if hash[:background] && COLORS[hash[:background]]
+    match[0] = mode(hash[:mode]) if hash[:mode] && MODES[hash[:mode]]
+    match[1] = color(hash[:color]) if hash[:color] && COLORS[hash[:color]]
+    match[2] = background_color(hash[:background]) if hash[:background] && COLORS[hash[:background]]
   end
 
   #
   # Set color from params symbol
   #
   def set_from_symbol(match, symbol)
-    match[1] = COLORS[symbol] + COLOR_OFFSET if symbol && COLORS[symbol]
+    match[1] = color(symbol) if symbol && COLORS[symbol]
   end
 
   class << self
-
-    #
-    # Return array of available modes used by colorize method
-    #
-    def modes
-      MODES.keys
-    end
-
-    #
-    # Return array of available colors used by colorize method
-    #
-    def colors
-      COLORS.keys
-    end
-
     #
     # Display color samples
     #
     def color_samples
-      String.colors.permutation(2).each do |background, color|
+      colors.permutation(2).each do |background, color|
         sample_text = "#{color.inspect.rjust(15)} on #{background.inspect.ljust(15)}"
         puts "#{sample_text.colorize(:color => color, :background => background)} #{sample_text}"
       end
