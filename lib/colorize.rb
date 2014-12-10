@@ -42,7 +42,7 @@ class String
   REGEXP_PATTERN = /\033\[([0-9]+);([0-9]+);([0-9]+)m(.+?)\033\[0m|([^\033]+)/m
   COLOR_OFFSET = 30
   BACKGROUND_OFFSET = 40
-  
+
   public
 
   #
@@ -62,26 +62,11 @@ class String
   #   puts "This is uncolorized".blue.on_red.uncolorize
   #
   def colorize(params)
-    begin
-      require 'Win32/Console/ANSI' if RUBY_PLATFORM =~ /win32/
-    rescue LoadError
-      raise 'You must gem install win32console to use colorize on Windows'
-    end
-    
-    self.scan(REGEXP_PATTERN).inject("") do |str, match|
-      match[0] ||= MODES[:default]
-      match[1] ||= COLORS[:default] + COLOR_OFFSET
-      match[2] ||= COLORS[:default] + BACKGROUND_OFFSET
-      match[3] ||= match[4]
+    windows_requires
 
-      if (params.instance_of?(Hash))
-        match[0] = MODES[params[:mode]] if params[:mode] && MODES[params[:mode]]
-        match[1] = COLORS[params[:color]] + COLOR_OFFSET if params[:color] && COLORS[params[:color]]
-        match[2] = COLORS[params[:background]] + BACKGROUND_OFFSET if params[:background] && COLORS[params[:background]]
-      elsif (params.instance_of?(Symbol))
-        match[1] = COLORS[params] + COLOR_OFFSET if params && COLORS[params]
-      end
-
+    scan(REGEXP_PATTERN).inject('') do |str, match|
+      set_defaults(match)
+      set_from_params(match, params)
       str << "\033[#{match[0]};#{match[1]};#{match[2]}m#{match[3]}\033[0m"
     end
   end
@@ -90,7 +75,7 @@ class String
   # Return uncolorized string
   #
   def uncolorize
-    self.scan(REGEXP_PATTERN).inject("") do |str, match|
+    scan(REGEXP_PATTERN).inject('') do |str, match|
       str << (match[3] || match[4])
     end
   end
@@ -99,9 +84,7 @@ class String
   # Return true if string is colorized
   #
   def colorized?
-    self.scan(REGEXP_PATTERN).reject do |match|
-      match.last
-    end.any?
+    scan(REGEXP_PATTERN).reject(&:last).any?
   end
 
   #
@@ -111,11 +94,11 @@ class String
     next if key == :default
 
     define_method key do
-      self.colorize(:color => key)
+      colorize(:color => key)
     end
 
     define_method "on_#{key}" do
-      self.colorize(:background => key)
+      colorize(:background => key)
     end
   end
 
@@ -126,8 +109,57 @@ class String
     next if key == :default
 
     define_method key do
-      self.colorize(:mode => key)
+      colorize(:mode => key)
     end
+  end
+
+  private
+
+  #
+  # Require windows libs
+  #
+  def windows_requires
+    begin
+      require 'Win32/Console/ANSI' if RUBY_VERSION < "2.0.0" && RUBY_PLATFORM =~ /win32/
+    rescue LoadError
+      raise 'You must gem install win32console to use colorize on Windows'
+    end
+  end
+
+  #
+  # Set default colors
+  #
+  def set_defaults(match)
+    match[0] ||= MODES[:default]
+    match[1] ||= COLORS[:default] + COLOR_OFFSET
+    match[2] ||= COLORS[:default] + BACKGROUND_OFFSET
+    match[3] ||= match[4]
+  end
+
+  #
+  # Set color from params
+  #
+  def set_from_params(match, params)
+    case params
+    when Hash then set_from_hash(match, params)
+    when Symbol then set_from_symbol(match, params)
+    end
+  end
+
+  #
+  # Set colors from params hash
+  #
+  def set_from_hash(match, hash)
+    match[0] = MODES[hash[:mode]] if hash[:mode] && MODES[hash[:mode]]
+    match[1] = COLORS[hash[:color]] + COLOR_OFFSET if hash[:color] && COLORS[hash[:color]]
+    match[2] = COLORS[hash[:background]] + BACKGROUND_OFFSET if hash[:background] && COLORS[hash[:background]]
+  end
+
+  #
+  # Set color from params symbol
+  #
+  def set_from_symbol(match, symbol)
+    match[1] = COLORS[symbol] + COLOR_OFFSET if symbol && COLORS[symbol]
   end
 
   class << self
@@ -147,21 +179,19 @@ class String
     end
 
     #
-    # Display color matrix with color names
+    # Display color samples
     #
-    def color_matrix(txt = '[X]')
-      size = String.colors.length
-      String.colors.each do |color|
-        String.colors.each do |back|
-          print txt.colorize(:color => color, :background => back)
-        end
-        puts " < #{color}"
+    def color_samples
+      String.colors.permutation(2).each do |background, color|
+        puts "#{color.inspect.rjust(15)} on #{background.inspect.ljust(15)}".colorize(:color => color, :background => background) + "#{color.inspect.rjust(15)} on #{background.inspect.ljust(15)}"
       end
-      String.colors.reverse.each_with_index do |back, index|
-        puts "#{"|".rjust(txt.length)*(size-index)} < #{back}"
-      end
-      ''
     end
 
+    #
+    # Method removed, raise NoMethodError
+    #
+    def color_matrix(txt = '')
+      fail NoMethodError, '#color_matrix method was removed, try #color_samples instead'
+    end
   end
 end
