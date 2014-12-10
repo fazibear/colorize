@@ -3,8 +3,6 @@
 #
 class String
 
-  REGEXP_PATTERN = /\033\[([0-9]+);([0-9]+);([0-9]+)m(.+?)\033\[0m|([^\033]+)/m
-
   #
   # Colors Hash
   #
@@ -53,6 +51,10 @@ class String
     MODES[mode]
   end
 
+  def scan_for_colors
+    scan(/\033\[([0-9]+);([0-9]+);([0-9]+)m(.+?)\033\[0m|([^\033]+)/m)
+  end
+
   #
   # Change color of string
   #
@@ -71,7 +73,7 @@ class String
   #
   def colorize(params)
     windows_requires
-    scan(REGEXP_PATTERN).inject('') do |str, match|
+    scan_for_colors.inject('') do |str, match|
       set_defaults(match)
       set_from_params(match, params)
       str << "\033[#{match[0]};#{match[1]};#{match[2]}m#{match[3]}\033[0m"
@@ -82,7 +84,7 @@ class String
   # Return uncolorized string
   #
   def uncolorize
-    scan(REGEXP_PATTERN).inject('') do |str, match|
+    scan_for_colors.inject('') do |str, match|
       str << (match[3] || match[4])
     end
   end
@@ -91,7 +93,7 @@ class String
   # Return true if string is colorized
   #
   def colorized?
-    scan(REGEXP_PATTERN).reject(&:last).any?
+    scan_for_colors.reject(&:last).any?
   end
 
   #
