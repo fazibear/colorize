@@ -183,7 +183,8 @@ class String
     #
     def color_samples
       String.colors.permutation(2).each do |background, color|
-        puts "#{color.inspect.rjust(15)} on #{background.inspect.ljust(15)}".colorize(:color => color, :background => background) + "#{color.inspect.rjust(15)} on #{background.inspect.ljust(15)}"
+        sample_text = "#{color.inspect.rjust(15)} on #{background.inspect.ljust(15)}"
+        puts "#{sample_text.colorize(:color => color, :background => background)} #{sample_text}"
       end
     end
 
