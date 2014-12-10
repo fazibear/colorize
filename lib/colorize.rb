@@ -66,12 +66,7 @@ class String
 
     self.scan(REGEXP_PATTERN).inject("") do |str, match|
       set_defaults(match)
-
-      case params
-      when Hash then set_from_params(match, params)
-      when Symbol then set_from_symbol(match, params)
-      end
-
+      set_from_params(match, params)
       str << "\033[#{match[0]};#{match[1]};#{match[2]}m#{match[3]}\033[0m"
     end
   end
@@ -144,16 +139,26 @@ class String
   end
 
   #
-  # Set colors from params hash
+  # Set color from params
   #
   def set_from_params(match, params)
-    match[0] = MODES[params[:mode]] if params[:mode] && MODES[params[:mode]]
-    match[1] = COLORS[params[:color]] + COLOR_OFFSET if params[:color] && COLORS[params[:color]]
-    match[2] = COLORS[params[:background]] + BACKGROUND_OFFSET if params[:background] && COLORS[params[:background]]
+    case params
+    when Hash then set_from_hash(match, params)
+    when Symbol then set_from_symbol(match, params)
+    end
   end
 
   #
-  # Set color from symbol
+  # Set colors from params hash
+  #
+  def set_from_hash(match, hash)
+    match[0] = MODES[hash[:mode]] if hash[:mode] && MODES[hash[:mode]]
+    match[1] = COLORS[hash[:color]] + COLOR_OFFSET if hash[:color] && COLORS[hash[:color]]
+    match[2] = COLORS[hash[:background]] + BACKGROUND_OFFSET if hash[:background] && COLORS[hash[:background]]
+  end
+
+  #
+  # Set color from params symbol
   #
   def set_from_symbol(match, symbol)
     match[1] = COLORS[symbol] + COLOR_OFFSET if symbol && COLORS[symbol]
