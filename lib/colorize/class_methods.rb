@@ -2,9 +2,9 @@ module Colorize
   module ClassMethods
 
     #
-    # Colors Hash
+    # Color codes hash
     #
-    def colors
+    def color_codes
       {
         :black   => 0, :light_black    => 60,
         :red     => 1, :light_red      => 61,
@@ -19,9 +19,16 @@ module Colorize
     end
 
     #
-    # Modes Hash
+    # Return array of available colors used by colorize
     #
-    def modes
+    def colors
+      color_codes.keys.sort
+    end
+
+    #
+    # Mode codes hash
+    #
+    def mode_codes
       {
         :default   => 0, # Turn off all attributes
         :bold      => 1, # Set bold mode
@@ -33,10 +40,17 @@ module Colorize
     end
 
     #
+    # Return array of available modes used by colorize
+    #
+    def modes
+      mode_codes.keys
+    end
+
+    #
     # Color and on_color methods
     #
     def color_methods
-      colors.each_key do |key|
+      colors.each do |key|
         next if key == :default
 
         define_method key do
@@ -53,7 +67,7 @@ module Colorize
     # Modes methods
     #
     def modes_methods
-      modes.each_key do |key|
+      modes.each do |key|
         next if key == :default
 
         define_method key do
