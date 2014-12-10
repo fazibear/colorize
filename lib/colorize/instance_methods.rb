@@ -45,17 +45,6 @@ module Colorize
     private
 
     #
-    # Require windows libs
-    #
-    def require_windows_libs
-      begin
-        require 'Win32/Console/ANSI' if RUBY_VERSION < "2.0.0" && RUBY_PLATFORM =~ /win32/
-      rescue LoadError
-        raise 'You must gem install win32console to use colorize on Windows'
-      end
-    end
-
-    #
     # Set default colors
     #
     def defaults_colors(match)
@@ -117,6 +106,17 @@ module Colorize
     #
     def scan_for_colors
       scan(/\033\[([0-9]+);([0-9]+);([0-9]+)m(.+?)\033\[0m|([^\033]+)/m)
+    end
+
+    #
+    # Require windows libs
+    #
+    def require_windows_libs
+      begin
+        require 'Win32/Console/ANSI' if RUBY_VERSION < "2.0.0" && RUBY_PLATFORM =~ /win32/
+      rescue LoadError
+        raise 'You must gem install win32console to use colorize on Windows'
+      end
     end
   end
 end
