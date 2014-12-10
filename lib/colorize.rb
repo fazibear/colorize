@@ -181,19 +181,12 @@ class String
     end
 
     #
-    # Display color matrix with color names
+    # Display color samples
     #
-    def color_matrix(txt = '[X]')
-      String.colors.each do |color|
-        String.colors.each do |back|
-          print txt.colorize(:color => color, :background => back)
-        end
-        puts " < #{color}"
+    def color_samples
+      String.colors.combination(2).each do |color, background|
+        puts "#{color} on #{background} ".rjust(30) + "#{color} on #{background}".colorize(:color => color, :background => background)
       end
-      String.colors.reverse.each_with_index do |back, index|
-        puts "#{"|".rjust(txt.length)*(String.colors.length-index)} < #{back}"
-      end
-      nil
     end
   end
 end
