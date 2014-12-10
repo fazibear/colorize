@@ -6,4 +6,7 @@ require File.expand_path('colorize/instance_methods', File.dirname(__FILE__))
 class String
   extend Colorize::ClassMethods
   include Colorize::InstanceMethods
+
+  color_methods
+  modes_methods
 end
