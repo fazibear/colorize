@@ -1,4 +1,4 @@
-colorize [![Gem Version](https://badge.fury.io/rb/colorize.svg)](http://badge.fury.io/rb/colorize) [![Build Status](https://travis-ci.org/fazibear/colorize.svg?branch=master)](https://travis-ci.org/fazibear/colorize)
+colorize [![Gem Version](https://badge.fury.io/rb/colorize.svg)](http://badge.fury.io/rb/colorize) [![Build Status](https://travis-ci.org/fazibear/colorize.svg?branch=master)](https://travis-ci.org/fazibear/colorize) [![Code Climate](https://codeclimate.com/github/fazibear/colorize/badges/gpa.svg)](https://codeclimate.com/github/fazibear/colorize)
 ========
   
 Ruby String class extension. Adds methods to set text color, background color and, text effects on ruby console and command line output, using ANSI escape sequences.
@@ -30,8 +30,7 @@ Class methods:
 
     String.colors - return array of all possible colors names
     String.modes  - return array of all possible modes
-    String.color_matrix - displays color matrix with color names
-    String.color_matrix("FOO") - display color matrix with "FOO" text
+    String.color_samples - displays color samples in all combinations
 
 requirements
 ------------
