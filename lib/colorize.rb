@@ -64,7 +64,7 @@ class String
   def colorize(params)
     windows_requires
 
-    self.scan(REGEXP_PATTERN).inject("") do |str, match|
+    scan(REGEXP_PATTERN).inject('') do |str, match|
       set_defaults(match)
       set_from_params(match, params)
       str << "\033[#{match[0]};#{match[1]};#{match[2]}m#{match[3]}\033[0m"
@@ -75,7 +75,7 @@ class String
   # Return uncolorized string
   #
   def uncolorize
-    self.scan(REGEXP_PATTERN).inject("") do |str, match|
+    scan(REGEXP_PATTERN).inject('') do |str, match|
       str << (match[3] || match[4])
     end
   end
@@ -84,9 +84,7 @@ class String
   # Return true if string is colorized
   #
   def colorized?
-    self.scan(REGEXP_PATTERN).reject do |match|
-      match.last
-    end.any?
+    scan(REGEXP_PATTERN).reject(&:last).any?
   end
 
   #
@@ -96,11 +94,11 @@ class String
     next if key == :default
 
     define_method key do
-      self.colorize(:color => key)
+      colorize(:color => key)
     end
 
     define_method "on_#{key}" do
-      self.colorize(:background => key)
+      colorize(:background => key)
     end
   end
 
@@ -111,7 +109,7 @@ class String
     next if key == :default
 
     define_method key do
-      self.colorize(:mode => key)
+      colorize(:mode => key)
     end
   end
 
@@ -184,9 +182,16 @@ class String
     # Display color samples
     #
     def color_samples
-      String.colors.combination(2).each do |color, background|
-        puts "#{color} on #{background} ".rjust(30) + "#{color} on #{background}".colorize(:color => color, :background => background)
+      String.colors.permutation(2).each do |background, color|
+        puts "#{color.inspect.rjust(15)} on #{background.inspect.ljust(15)}".colorize(:color => color, :background => background) + "#{color.inspect.rjust(15)} on #{background.inspect.ljust(15)}"
       end
+    end
+
+    #
+    # Method removed, raise NoMethodError
+    #
+    def color_matrix(txt = '')
+      fail NoMethodError, '#color_matrix method was removed, try #color_samples instead'
     end
   end
 end
