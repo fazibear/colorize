@@ -33,6 +33,36 @@ module Colorize
     end
 
     #
+    # Color and on_color methods
+    #
+    def color_methods
+      colors.each_key do |key|
+        next if key == :default
+
+        define_method key do
+          colorize(:color => key)
+        end
+
+        define_method "on_#{key}" do
+          colorize(:background => key)
+        end
+      end
+    end
+
+    #
+    # Modes methods
+    #
+    def modes_methods
+      modes.each_key do |key|
+        next if key == :default
+
+        define_method key do
+          colorize(:mode => key)
+        end
+      end
+    end
+
+    #
     # Display color samples
     #
     def color_samples

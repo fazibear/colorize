@@ -118,37 +118,5 @@ module Colorize
     def scan_for_colors
       scan(/\033\[([0-9]+);([0-9]+);([0-9]+)m(.+?)\033\[0m|([^\033]+)/m)
     end
-
-    #
-    # Make some methods for String
-    #
-    def self.included(base)
-
-      #
-      # Color and on_color methods
-      #
-      base.colors.each_key do |key|
-        next if key == :default
-
-        define_method key do
-          colorize(:color => key)
-        end
-
-        define_method "on_#{key}" do
-          colorize(:background => key)
-        end
-      end
-
-      #
-      # Modes methods
-      #
-      base.modes.each_key do |key|
-        next if key == :default
-
-        define_method key do
-          colorize(:mode => key)
-        end
-      end
-    end
   end
 end
