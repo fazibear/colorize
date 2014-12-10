@@ -84,21 +84,21 @@ module Colorize
     # Color for foreground (offset 30)
     #
     def color(color)
-      self.class.colors[color] + 30 if self.class.colors[color]
+      self.class.color_codes[color] + 30 if self.class.color_codes[color]
     end
 
     #
     # Color for background (offset 40)
     #
     def background_color(color)
-      self.class.colors[color] + 40 if self.class.colors[color]
+      self.class.color_codes[color] + 40 if self.class.color_codes[color]
     end
 
     #
     # Mode
     #
     def mode(mode)
-      self.class.modes[mode]
+      self.class.mode_codes[mode]
     end
 
     #
