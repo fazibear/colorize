@@ -67,10 +67,9 @@ class String
     self.scan(REGEXP_PATTERN).inject("") do |str, match|
       set_defaults(match)
 
-      if params.instance_of?(Hash)
-        set_from_params(match, params)
-      elsif params.instance_of?(Symbol)
-        set_from_symbol(match, params)
+      case params
+      when Hash then set_from_params(match, params)
+      when Symbol then set_from_symbol(match, params)
       end
 
       str << "\033[#{match[0]};#{match[1]};#{match[2]}m#{match[3]}\033[0m"
@@ -133,7 +132,6 @@ class String
       raise 'You must gem install win32console to use colorize on Windows'
     end
   end
-
 
   #
   # Set default colors
