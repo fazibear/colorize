@@ -52,7 +52,7 @@ install
 license
 -------
 
-Copyright (C) 2007 Michal Kalbarczyk
+Copyright (C) 2007-2015 Michal Kalbarczyk
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
