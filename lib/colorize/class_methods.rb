@@ -40,7 +40,7 @@ module Colorize
     # Return array of available colors used by colorize
     #
     def colors
-      color_codes.keys.sort
+      color_codes.keys
     end
 
     #
