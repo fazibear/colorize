@@ -18,6 +18,7 @@ module Colorize
     #   puts "This is uncolorized".blue.on_red.uncolorize
     #
     def colorize(params)
+      return self if self.class.disable_colorization
       require_windows_libs
       scan_for_colors.inject('') do |str, match|
         defaults_colors(match)

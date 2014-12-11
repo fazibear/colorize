@@ -2,6 +2,24 @@ module Colorize
   module ClassMethods
 
     #
+    # Property to disable colorization
+    #
+    def disable_colorization(value = nil)
+      if value.nil?
+        @disable_colorization || false
+      else
+        @disable_colorization = (value || false)
+      end
+    end
+
+    #
+    # Setter for disable colorization
+    #
+    def disable_colorization=(value)
+      @disable_colorization = (value || false)
+    end
+
+    #
     # Color codes hash
     #
     def color_codes
