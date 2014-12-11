@@ -37,10 +37,6 @@ Class methods:
     String.disable_colorization = true  - enable colorization
     String.disable_colorization true    - enable colorization
 
-
-    String.disable_colorization - check if colorization is disabled
-
-
 requirements
 ------------
 
