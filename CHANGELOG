@@ -1,5 +1,6 @@
 == 0.7.5 / 2014-12-11
   * big code refactoring
+  * disable_colorization feature added
 
 == 0.7.4 / 2014-12-10
   * code cleanups
