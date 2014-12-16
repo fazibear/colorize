@@ -28,9 +28,14 @@ Some usage samples:
 
 Class methods:
 
-    String.colors - return array of all possible colors names
-    String.modes  - return array of all possible modes
-    String.color_samples - displays color samples in all combinations
+    String.colors                       - return array of all possible colors names
+    String.modes                        - return array of all possible modes
+    String.color_samples                - displays color samples in all combinations
+    String.disable_colorization         - check if colorization is disabled
+    String.disable_colorization = false - disable colorization
+    String.disable_colorization false   - disable colorization
+    String.disable_colorization = true  - enable colorization
+    String.disable_colorization true    - enable colorization
 
 requirements
 ------------
@@ -47,7 +52,7 @@ install
 license
 -------
 
-Copyright (C) 2007 Michal Kalbarczyk
+Copyright (C) 2007-2015 Michal Kalbarczyk
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
