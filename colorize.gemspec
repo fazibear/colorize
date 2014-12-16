@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
     'colorize.gemspec',
     'lib/colorize.rb',
     'lib/colorize/class_methods.rb',
-    'lib/colorize/instance_methods.rb'.
+    'lib/colorize/instance_methods.rb',
     'test/test_colorize.rb',
   ]
   s.test_files = [
