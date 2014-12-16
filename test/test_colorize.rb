@@ -94,13 +94,19 @@ class TestColorize < Test::Unit::TestCase
                  "\e[5;34;41mThis is blue\ntext on red\e[0m"
   end
 
-  def test_disable_colorization_with_setter
+  def test_disable_colorization_with_=
     String.disable_colorization = true
     assert_equal String.disable_colorization, true
     String.disable_colorization = false
   end
+  
+  def test_disable_colorization_with_method
+    String.disable_colorization true
+    assert_equal String.disable_colorization, true
+    String.disable_colorization false
+  end
 
-  def test_disable_colorize_with_setter
+  def test_string_disable_colorization_with_=
     String.disable_colorization = true
 
     assert_equal String.disable_colorization, true
@@ -114,7 +120,7 @@ class TestColorize < Test::Unit::TestCase
                  "\e[0;34;49mThis is blue after enabling\e[0m"
   end
 
-  def test_disable_colorize_with_setter
+  def test_string_disable_colorization_with_method
     assert_equal 'This is blue before disabling'.colorize(:blue),
                  "\e[0;34;49mThis is blue before disabling\e[0m"
 
