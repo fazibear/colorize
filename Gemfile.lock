@@ -1,0 +1,18 @@
+PATH
+  remote: .
+  specs:
+    colorize (0.7.5)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    minitest (5.5.0)
+    rake (10.4.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  colorize!
+  minitest
+  rake
