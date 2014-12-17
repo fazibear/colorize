@@ -1,0 +1,15 @@
+PATH
+  remote: .
+  specs:
+    colorize (0.7.5)
+
+GEM
+  specs:
+    minitest (5.5.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  colorize!
+  minitest
