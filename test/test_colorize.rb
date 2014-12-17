@@ -1,7 +1,7 @@
-require 'test/unit'
+require "minitest/autorun"
 require File.dirname(__FILE__) + '/../lib/colorize'
 
-class TestColorize < Test::Unit::TestCase
+class TestColorize < Minitest::Test
   def test_blue_symbol
     assert_equal 'This is blue'.colorize(:blue),
                  "\e[0;34;49mThis is blue\e[0m"
