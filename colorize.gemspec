@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.name = 'colorize'
   s.version = '0.7.5'
 
-  s.authors = ['fazibear']
+  s.authors = ['Michał Kalbarczyk']
   s.email = 'fazibear@gmail.com'
   
   s.date = Time.now.strftime("%Y-%m-%d")
