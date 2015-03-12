@@ -1,3 +1,6 @@
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
+
 require "minitest/autorun"
 require File.dirname(__FILE__) + '/../lib/colorize'
 
@@ -99,7 +102,7 @@ class TestColorize < Minitest::Test
     assert_equal String.disable_colorization, true
     String.disable_colorization = false
   end
-  
+
   def test_disable_colorization_with_method
     String.disable_colorization true
     assert_equal String.disable_colorization, true
@@ -135,7 +138,17 @@ class TestColorize < Minitest::Test
 
     assert_equal 'This is blue after enabling'.colorize(:blue),
                  "\e[0;34;49mThis is blue after enabling\e[0m"
-
   end
 
+  def test_color_matrix_method
+    assert_raises NoMethodError do
+      String.color_matrix
+    end
+  end
+
+  def test_color_samples_method
+    assert_output do
+      String.color_samples
+    end
+  end
 end

@@ -4,9 +4,9 @@ Gem::Specification.new do |s|
 
   s.authors = ['Michał Kalbarczyk']
   s.email = 'fazibear@gmail.com'
-  
+
   s.date = Time.now.strftime("%Y-%m-%d")
-  
+
   s.homepage = 'http://github.com/fazibear/colorize'
   s.description = 'Ruby String class extension. Adds methods to set text color, background color and, text effects on ruby console and command line output, using ANSI escape sequences.'
   s.summary = 'Add color methods to String class'
@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'rake'
   s.add_development_dependency 'minitest'
+  s.add_development_dependency 'codeclimate-test-reporter'
 
   s.files = [
     'LICENSE',
