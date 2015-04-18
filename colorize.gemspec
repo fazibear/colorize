@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'colorize'
-  s.version = '0.7.5'
+  s.version = '0.7.6'
 
   s.authors = ['Michał Kalbarczyk']
   s.email = 'fazibear@gmail.com'
