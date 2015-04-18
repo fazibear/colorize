@@ -14,9 +14,9 @@ Gem::Specification.new do |s|
 
   s.require_paths = ['lib']
 
-  s.add_development_dependency 'rake'
-  s.add_development_dependency 'minitest'
-  s.add_development_dependency 'codeclimate-test-reporter'
+  s.add_development_dependency 'rake', '~> 0'
+  s.add_development_dependency 'minitest', '~> 0'
+  s.add_development_dependency 'codeclimate-test-reporter', '~> 0'
 
   s.files = [
     'LICENSE',
