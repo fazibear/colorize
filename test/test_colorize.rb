@@ -75,6 +75,8 @@ class TestColorize < Minitest::Test
     assert_equal 'Red'.red.colorized?, true
     assert_equal 'Blue'.colorized?, false
     assert_equal 'Green'.blue.green.uncolorize.colorized?, false
+    assert_equal ('none' + 'red'.red + 'none' + 'blue'.blue + 'none').colorized?, true
+    assert_equal ('none' + 'red'.red + 'none' + 'blue'.blue + 'none').uncolorize.colorized?, false
   end
 
   def test_concatenated_strings_on_green
@@ -138,6 +140,11 @@ class TestColorize < Minitest::Test
 
     assert_equal 'This is blue after enabling'.colorize(:blue),
                  "\e[0;34;49mThis is blue after enabling\e[0m"
+  end
+
+  def test_already_colored_string_with_one_value
+    assert_equal "\e[31mThis is red\e[0m".red,
+                 'This is red'.red
   end
 
   def test_color_matrix_method

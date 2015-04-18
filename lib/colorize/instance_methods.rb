@@ -32,7 +32,7 @@ module Colorize
     #
     def uncolorize
       scan_for_colors.inject('') do |str, match|
-        str << (match[3] || match[4])
+        str << match[3]
       end
     end
 
@@ -40,7 +40,9 @@ module Colorize
     # Return true if string is colorized
     #
     def colorized?
-      scan_for_colors.reject(&:last).any?
+      scan_for_colors.inject([]) do |colors, match|
+        colors << match.tap(&:pop)
+      end.flatten.compact.any?
     end
 
     private
@@ -52,7 +54,6 @@ module Colorize
       match[0] ||= mode(:default)
       match[1] ||= color(:default)
       match[2] ||= background_color(:default)
-      match[3] ||= match[4]
     end
 
     #
@@ -106,7 +107,18 @@ module Colorize
     # Scan for colorized string
     #
     def scan_for_colors
-      scan(/\033\[([0-9]+);([0-9]+);([0-9]+)m(.+?)\033\[0m|([^\033]+)/m)
+      scan(/\033\[([0-9;]+)m(.+?)\033\[0m|([^\033]+)/m).map do |match|
+        split_colors(match)
+      end
+    end
+
+    def split_colors(match)
+      colors = (match[0] || "").split(';')
+      Array.new(4).tap do |array|
+        array[0], array[1], array[2] = colors if colors.length == 3
+        array[1] = colors                     if colors.length == 1
+        array[3] = match[1] || match[2]
+      end
     end
 
     #
