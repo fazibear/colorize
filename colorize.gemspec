@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'colorize'
-  s.version = '0.7.6'
+  s.version = '0.7.7'
 
   s.authors = ['Michał Kalbarczyk']
   s.email = 'fazibear@gmail.com'
@@ -14,9 +14,9 @@ Gem::Specification.new do |s|
 
   s.require_paths = ['lib']
 
-  s.add_development_dependency 'rake', '~> 0'
-  s.add_development_dependency 'minitest', '~> 0'
-  s.add_development_dependency 'codeclimate-test-reporter', '~> 0'
+  s.add_development_dependency 'rake', '~> 10.0'
+  s.add_development_dependency 'minitest', '~> 5.0'
+  s.add_development_dependency 'codeclimate-test-reporter', '~> 0.4'
 
   s.files = [
     'LICENSE',
