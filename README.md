@@ -1,7 +1,14 @@
 colorize [![Gem Version](https://badge.fury.io/rb/colorize.svg)](http://badge.fury.io/rb/colorize) [![Build Status](https://travis-ci.org/fazibear/colorize.svg?branch=master)](https://travis-ci.org/fazibear/colorize) [![Code Climate](https://codeclimate.com/github/fazibear/colorize/badges/gpa.svg)](https://codeclimate.com/github/fazibear/colorize) [![Test Coverage](https://codeclimate.com/github/fazibear/colorize/badges/coverage.svg)](https://codeclimate.com/github/fazibear/colorize)
 ========
 
-Ruby String class extension. Adds methods to set text color, background color and, text effects on ruby console and command line output, using ANSI escape sequences.
+Ruby gem for colorizing text using ANSI escape sequences.
+Extends `String` class or create a `ColorizedString` with methods to set text color, background color and text effects.
+
+modes
+-----
+
+* `require 'colorize'` - Extends String class
+* `require 'colorized_string'` - Create ColorizedString class
 
 features
 --------
@@ -9,13 +16,24 @@ features
 * change string color
 * change string background
 * change string effect
+* display color samples
+* disable colorization
 
 usage
 -----
 
-Some usage samples:
-
 ```ruby
+require 'colorize'
+
+String.colors                       # return array of all possible colors names
+String.modes                        # return array of all possible modes
+String.color_samples                # displays color samples in all combinations
+String.disable_colorization         # check if colorization is disabled
+String.disable_colorization = false # enable colorization
+String.disable_colorization false   # enable colorization
+String.disable_colorization = true  # disable colorization
+String.disable_colorization true    # disable colorization
+
 puts "This is blue".colorize(:blue)
 puts "This is light blue".colorize(:light_blue)
 puts "This is also blue".colorize(:color => :blue)
@@ -28,17 +46,28 @@ puts "This is blue text on red".blue.on_red.blink
 puts "This is uncolorized".blue.on_red.uncolorize
 ```
 
-Class methods:
-
 ```ruby
-String.colors                       # return array of all possible colors names
-String.modes                        # return array of all possible modes
-String.color_samples                # displays color samples in all combinations
-String.disable_colorization         # check if colorization is disabled
-String.disable_colorization = false # enable colorization
-String.disable_colorization false   # enable colorization
-String.disable_colorization = true  # disable colorization
-String.disable_colorization true    # disable colorization
+require 'colorized_string'
+
+ColorizedString.colors                       # return array of all possible colors names
+ColorizedString.modes                        # return array of all possible modes
+ColorizedString.color_samples                # displays color samples in all combinations
+ColorizedString.disable_colorization         # check if colorization is disabled
+ColorizedString.disable_colorization = false # enable colorization
+ColorizedString.disable_colorization false   # enable colorization
+ColorizedString.disable_colorization = true  # disable colorization
+ColorizedString.disable_colorization true    # disable colorization
+
+puts Colorize["This is blue"].colorize(:blue)
+puts Colorize["This is light blue"].colorize(:light_blue)
+puts Colorize["This is also blue"].colorize(:color => :blue)
+puts Colorize["This is light blue with red background"].colorize(:color => :light_blue, :background => :red)
+puts Colorize["This is light blue with red background"].colorize(:light_blue ).colorize( :background => :red)
+puts Colorize["This is blue text on red"].blue.on_red
+puts Colorize["This is red on blue"].colorize(:red).on_blue
+puts Colorize["This is red on blue and underline"].colorize(:red).on_blue.underline
+puts Colorize["This is blue text on red"].blue.on_red.blink
+puts Colorize["This is uncolorized"].blue.on_red.uncolorize
 ```
 
 requirements
