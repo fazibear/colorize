@@ -87,7 +87,7 @@ class TestColorize < Minitest::Test
 
   def test_concatenated_strings_uncolorize
     assert_equal ('none' + 'red'.red + 'none' + 'blue'.blue + 'none').uncolorize,
-                 "nonerednonebluenone"
+                 'nonerednonebluenone'
   end
 
   def test_frozen_strings
@@ -164,10 +164,10 @@ class TestColorize < Minitest::Test
     assert_equal String.new('This is red').red,
                  ColorizedString.new('This is red').red
 
-    assert_equal "This is blue".blue,
+    assert_equal 'This is blue'.blue,
                  Colorize['This is blue'].blue
 
-    assert_equal "This is blue".red.uncolorize.blue,
+    assert_equal 'This is blue'.red.uncolorize.blue,
                  Colorize['This is blue'].red.uncolorize.blue
   end
 end

@@ -49,7 +49,7 @@ module Colorize
     def color_matrix(txt = '')
       fail NoMethodError, '#color_matrix method was removed, try #color_samples instead'
     end
-  
+
     # private
 
     #
@@ -82,7 +82,7 @@ module Colorize
         :hide      => 8  # Hide text (foreground color would be the same as background)
       }
     end
-    
+
     #
     # Generate color and on_color methods
     #
