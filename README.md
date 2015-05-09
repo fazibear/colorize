@@ -68,6 +68,9 @@ puts Colorize["This is red on blue"].colorize(:red).on_blue
 puts Colorize["This is red on blue and underline"].colorize(:red).on_blue.underline
 puts Colorize["This is blue text on red"].blue.on_red.blink
 puts Colorize["This is uncolorized"].blue.on_red.uncolorize
+
+puts ColorizedString.new("This is blue").blue
+puts ColorizedString.new("This is light blue").colorize(:light_blue)
 ```
 
 requirements

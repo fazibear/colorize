@@ -20,7 +20,7 @@ module Colorize
     def colorize(params)
       return self if self.class.disable_colorization
       require_windows_libs
-      scan_for_colors.inject('') do |str, match|
+      scan_for_colors.inject(self.class.new) do |str, match|
         defaults_colors(match)
         colors_from_params(match, params)
         str << "\033[#{match[0]};#{match[1]};#{match[2]}m#{match[3]}\033[0m"
@@ -31,7 +31,7 @@ module Colorize
     # Return uncolorized string
     #
     def uncolorize
-      scan_for_colors.inject('') do |str, match|
+      scan_for_colors.inject(self.class.new) do |str, match|
         str << match[3]
       end
     end

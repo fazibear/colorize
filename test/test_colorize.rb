@@ -162,10 +162,12 @@ class TestColorize < Minitest::Test
 
   def test_colorized_string
     assert_equal String.new('This is red').red,
-                 Colorize::ColorizedString.new('This is red').red
+                 ColorizedString.new('This is red').red
 
     assert_equal "This is blue".blue,
                  Colorize['This is blue'].blue
 
+    assert_equal "This is blue".red.uncolorize.blue,
+                 Colorize['This is blue'].red.uncolorize.blue
   end
 end
