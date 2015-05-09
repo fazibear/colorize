@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'colorize'
-  s.version = '0.7.7'
+  s.version = '0.7.8'
 
   s.authors = ['Michał Kalbarczyk']
   s.email = 'fazibear@gmail.com'
@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.date = Time.now.strftime("%Y-%m-%d")
 
   s.homepage = 'http://github.com/fazibear/colorize'
-  s.description = 'Ruby String class extension. Adds methods to set text color, background color and, text effects on ruby console and command line output, using ANSI escape sequences.'
-  s.summary = 'Add color methods to String class'
+  s.description = 'Extends String class or create a ColorizedString with methods to set text color, background color and text effects.'
+  s.summary = 'Ruby gem for colorizing text using ANSI escape sequences.'
   s.license = 'GPL-2'
 
   s.require_paths = ['lib']
