@@ -540,17 +540,17 @@ Rails/ActionFilter:
   - app/controllers/**/*.rb
 Rails/DefaultScope:
   Description: Checks if the argument passed to default_scope is a block.
-  Enabled: true
+  Enabled: false
   Include:
   - app/models/**/*.rb
 Rails/HasAndBelongsToMany:
   Description: Prefer has_many :through to has_and_belongs_to_many.
-  Enabled: true
+  Enabled: false
   Include:
   - app/models/**/*.rb
 Rails/Output:
   Description: Checks for calls to puts, print, etc.
-  Enabled: true
+  Enabled: false
   Include:
   - app/**/*.rb
   - config/**/*.rb
@@ -558,17 +558,17 @@ Rails/Output:
   - lib/**/*.rb
 Rails/ReadWriteAttribute:
   Description: Checks for read_attribute(:attr) and write_attribute(:attr, val).
-  Enabled: true
+  Enabled: false
   Include:
   - app/models/**/*.rb
 Rails/ScopeArgs:
   Description: Checks the arguments of ActiveRecord scopes.
-  Enabled: true
+  Enabled: false
   Include:
   - app/models/**/*.rb
 Rails/Validation:
   Description: Use validates :attribute, hash of validations.
-  Enabled: true
+  Enabled: false
   Include:
   - app/models/**/*.rb
 Style/InlineComment:
