@@ -1,6 +1,5 @@
 module Colorize
   module ClassMethods
-
     #
     # Property to disable colorization
     #
@@ -46,7 +45,7 @@ module Colorize
     #
     # Method removed, raise NoMethodError
     #
-    def color_matrix(txt = '')
+    def color_matrix(_ = '')
       fail NoMethodError, '#color_matrix method was removed, try #color_samples instead'
     end
 

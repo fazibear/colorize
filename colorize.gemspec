@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.authors = ['Michał Kalbarczyk']
   s.email = 'fazibear@gmail.com'
 
-  s.date = Time.now.strftime("%Y-%m-%d")
+  s.date = Time.now.strftime('%Y-%m-%d')
 
   s.homepage = 'http://github.com/fazibear/colorize'
   s.description = 'Extends String class or create a ColorizedString with methods to set text color, background color and text effects.'

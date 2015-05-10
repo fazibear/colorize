@@ -1,6 +1,5 @@
 module Colorize
   module InstanceMethods
-
     #
     # Change color of string
     #
@@ -21,8 +20,8 @@ module Colorize
       return self if self.class.disable_colorization
       require_windows_libs
       scan_for_colors.inject(self.class.new) do |str, match|
-        defaults_colors(match)
         colors_from_params(match, params)
+        defaults_colors(match)
         str << "\033[#{match[0]};#{match[1]};#{match[2]}m#{match[3]}\033[0m"
       end
     end
@@ -113,23 +112,21 @@ module Colorize
     end
 
     def split_colors(match)
-      colors = (match[0] || "").split(';')
-      Array.new(4).tap do |array|
-        array[0], array[1], array[2] = colors if colors.length == 3
-        array[1] = colors                     if colors.length == 1
-        array[3] = match[1] || match[2]
-      end
+      colors = (match[0] || '').split(';')
+      array = Array.new(3)
+      array[0], array[1], array[2] = colors if colors.length == 3
+      array[1] = colors                     if colors.length == 1
+      array[3] = match[1] || match[2]
+      array
     end
 
     #
     # Require windows libs
     #
     def require_windows_libs
-      begin
-        require 'Win32/Console/ANSI' if RUBY_VERSION < "2.0.0" && RUBY_PLATFORM =~ /win32/
-      rescue LoadError
-        raise 'You must gem install win32console to use colorize on Windows'
-      end
+      require 'Win32/Console/ANSI' if RUBY_VERSION < '2.0.0' && RUBY_PLATFORM =~ /win32/
+    rescue LoadError
+      raise 'You must gem install win32console to use colorize on Windows'
     end
   end
 end

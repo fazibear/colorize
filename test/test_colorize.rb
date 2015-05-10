@@ -1,7 +1,7 @@
-require "codeclimate-test-reporter"
+require 'codeclimate-test-reporter'
 CodeClimate::TestReporter.start
 
-require "minitest/autorun"
+require 'minitest/autorun'
 require File.dirname(__FILE__) + '/../lib/colorize'
 require File.dirname(__FILE__) + '/../lib/colorized_string'
 
@@ -69,25 +69,28 @@ class TestColorize < Minitest::Test
 
   def test_uncolorize
     assert_equal 'This is uncolorized'.blue.on_red.uncolorize,
-                 "This is uncolorized"
+                 'This is uncolorized'
   end
 
   def test_colorized?
     assert_equal 'Red'.red.colorized?, true
     assert_equal 'Blue'.colorized?, false
     assert_equal 'Green'.blue.green.uncolorize.colorized?, false
-    assert_equal ('none' + 'red'.red + 'none' + 'blue'.blue + 'none').colorized?, true
-    assert_equal ('none' + 'red'.red + 'none' + 'blue'.blue + 'none').uncolorize.colorized?, false
+  end
+
+  def test_concatenated__colorize?
+    assert_equal "none #{'red'.red} none #{'blue'.blue} none".colorized?, true
+    assert_equal "none #{'red'.red} none #{'blue'.blue} none".uncolorize.colorized?, false
   end
 
   def test_concatenated_strings_on_green
-    assert_equal ('none' + 'red'.red + 'none' + 'blue'.blue + 'none').on_green,
-                 "\e[0;39;42mnone\e[0m\e[0;31;42mred\e[0m\e[0;39;42mnone\e[0m\e[0;34;42mblue\e[0m\e[0;39;42mnone\e[0m"
+    assert_equal "none #{'red'.red} none #{'blue'.blue} none".on_green,
+                 "\e[0;39;42mnone \e[0m\e[0;31;42mred\e[0m\e[0;39;42m none \e[0m\e[0;34;42mblue\e[0m\e[0;39;42m none\e[0m"
   end
 
   def test_concatenated_strings_uncolorize
-    assert_equal ('none' + 'red'.red + 'none' + 'blue'.blue + 'none').uncolorize,
-                 'nonerednonebluenone'
+    assert_equal "none #{'red'.red} none #{'blue'.blue} none".uncolorize,
+                 'none red none blue none'
   end
 
   def test_frozen_strings
@@ -160,13 +163,17 @@ class TestColorize < Minitest::Test
     end
   end
 
-  def test_colorized_string
+  def test_colorized_string_class
     assert_equal String.new('This is red').red,
                  ColorizedString.new('This is red').red
+  end
 
+  def test_colorized_string_colorize
     assert_equal 'This is blue'.blue,
                  Colorize['This is blue'].blue
+  end
 
+  def test_colorized_string_chained
     assert_equal 'This is blue'.red.uncolorize.blue,
                  Colorize['This is blue'].red.uncolorize.blue
   end
