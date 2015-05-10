@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.date = Time.now.strftime('%Y-%m-%d')
 
   s.homepage = 'http://github.com/fazibear/colorize'
-  s.description = 'Extends String class or create a ColorizedString with methods to set text color, background color and text effects.'
+  s.description = 'Extends String class or add a ColorizedString with methods to set text color, background color and text effects.'
   s.summary = 'Ruby gem for colorizing text using ANSI escape sequences.'
   s.license = 'GPL-2'
 
