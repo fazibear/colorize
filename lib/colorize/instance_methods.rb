@@ -69,8 +69,8 @@ module Colorize
     # Set colors from params hash
     #
     def colors_from_hash(match, hash)
-      match[0] = mode(hash[:mode]) if mode(hash[:mode])
-      match[1] = color(hash[:color]) if color(hash[:color])
+      match[0] = mode(hash[:mode])                   if mode(hash[:mode])
+      match[1] = color(hash[:color])                 if color(hash[:color])
       match[2] = background_color(hash[:background]) if background_color(hash[:background])
     end
 
