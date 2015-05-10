@@ -3,7 +3,6 @@ CodeClimate::TestReporter.start
 
 require 'minitest/autorun'
 require File.dirname(__FILE__) + '/../lib/colorize'
-require File.dirname(__FILE__) + '/../lib/colorized_string'
 
 class TestColorize < Minitest::Test
   def test_blue_symbol
@@ -161,20 +160,5 @@ class TestColorize < Minitest::Test
     assert_output do
       String.color_samples
     end
-  end
-
-  def test_colorized_string_class
-    assert_equal String.new('This is red').red,
-                 ColorizedString.new('This is red').red
-  end
-
-  def test_colorized_string_colorize
-    assert_equal 'This is blue'.blue,
-                 Colorize['This is blue'].blue
-  end
-
-  def test_colorized_string_chained
-    assert_equal 'This is blue'.red.uncolorize.blue,
-                 Colorize['This is blue'].red.uncolorize.blue
   end
 end

@@ -38,7 +38,7 @@ module Colorize
     def color_samples
       colors.permutation(2).each do |background, color|
         sample_text = "#{color.inspect.rjust(15)} on #{background.inspect.ljust(15)}"
-        puts "#{sample_text.colorize(:color => color, :background => background)} #{sample_text}"
+        puts "#{new(sample_text).colorize(:color => color, :background => background)} #{sample_text}"
       end
     end
 
