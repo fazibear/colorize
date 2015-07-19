@@ -31,9 +31,7 @@ module Colorize
     # Return uncolorized string
     #
     def uncolorize
-      scan_for_colors.inject('') do |str, match|
-        str << match[3]
-      end
+      gsub(/\033\[[0-9;]+m/, "")
     end
 
     #
