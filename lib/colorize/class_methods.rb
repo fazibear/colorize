@@ -76,6 +76,7 @@ module Colorize
       {
         :default   => 0, # Turn off all attributes
         :bold      => 1, # Set bold mode
+	:italic	   => 3, # Set italic mode
         :underline => 4, # Set underline mode
         :blink     => 5, # Set blink mode
         :swap      => 7, # Exchange foreground and background colors
