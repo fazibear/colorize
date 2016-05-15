@@ -15,9 +15,7 @@ module Colorize
     #
     # Setter for disable colorization
     #
-    def disable_colorization=(value)
-      @disable_colorization = value
-    end
+    attr_writer :disable_colorization
 
     #
     # Return array of available colors used by colorize
