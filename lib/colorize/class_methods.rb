@@ -6,9 +6,9 @@ module Colorize
     #
     def disable_colorization(value = nil)
       if value.nil?
-        @disable_colorization || false
+        defined?(@disable_colorization) ? @disable_colorization : false
       else
-        @disable_colorization = (value || false)
+        self.disable_colorization = value
       end
     end
 
@@ -16,7 +16,7 @@ module Colorize
     # Setter for disable colorization
     #
     def disable_colorization=(value)
-      @disable_colorization = (value || false)
+      @disable_colorization = value
     end
 
     #
@@ -49,7 +49,7 @@ module Colorize
     def color_matrix(txt = '')
       fail NoMethodError, '#color_matrix method was removed, try #color_samples instead'
     end
-  
+
     # private
 
     #
@@ -82,7 +82,7 @@ module Colorize
         :hide      => 8  # Hide text (foreground color would be the same as background)
       }
     end
-    
+
     #
     # Generate color and on_color methods
     #
