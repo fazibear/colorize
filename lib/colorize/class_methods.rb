@@ -49,7 +49,7 @@ module Colorize
     def color_matrix(txt = '')
       fail NoMethodError, '#color_matrix method was removed, try #color_samples instead'
     end
-  
+
     # private
 
     #
@@ -76,13 +76,14 @@ module Colorize
       {
         :default   => 0, # Turn off all attributes
         :bold      => 1, # Set bold mode
+        :italic    => 3, # Set italic mode
         :underline => 4, # Set underline mode
         :blink     => 5, # Set blink mode
         :swap      => 7, # Exchange foreground and background colors
         :hide      => 8  # Hide text (foreground color would be the same as background)
       }
     end
-    
+
     #
     # Generate color and on_color methods
     #
