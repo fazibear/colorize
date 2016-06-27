@@ -71,6 +71,11 @@ class TestColorize < Minitest::Test
                  "This is uncolorized"
   end
 
+  def test_uncolorize_unbalanced_color_codes
+    assert_equal "example", "\e[31mexample".uncolorize
+    assert_equal "example", "\e[1;31;41mexample".uncolorize
+  end
+
   def test_colorized?
     assert_equal 'Red'.red.colorized?, true
     assert_equal 'Blue'.colorized?, false
