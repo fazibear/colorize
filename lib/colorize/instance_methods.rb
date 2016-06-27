@@ -1,6 +1,5 @@
 module Colorize
   module InstanceMethods
-
     #
     # Change color of string
     #
@@ -20,9 +19,9 @@ module Colorize
     def colorize(params)
       return self if self.class.disable_colorization
       require_windows_libs
-      scan_for_colors.inject('') do |str, match|
-        defaults_colors(match)
+      scan_for_colors.inject(self.class.new) do |str, match|
         colors_from_params(match, params)
+        defaults_colors(match)
         str << "\033[#{match[0]};#{match[1]};#{match[2]}m#{match[3]}\033[0m"
       end
     end
@@ -31,7 +30,7 @@ module Colorize
     # Return uncolorized string
     #
     def uncolorize
-      scan_for_colors.inject('') do |str, match|
+      scan_for_colors.inject(self.class.new) do |str, match|
         str << match[3]
       end
     end
@@ -70,8 +69,8 @@ module Colorize
     # Set colors from params hash
     #
     def colors_from_hash(match, hash)
-      match[0] = mode(hash[:mode]) if mode(hash[:mode])
-      match[1] = color(hash[:color]) if color(hash[:color])
+      match[0] = mode(hash[:mode])                   if mode(hash[:mode])
+      match[1] = color(hash[:color])                 if color(hash[:color])
       match[2] = background_color(hash[:background]) if background_color(hash[:background])
     end
 
@@ -113,23 +112,21 @@ module Colorize
     end
 
     def split_colors(match)
-      colors = (match[0] || "").split(';')
-      Array.new(4).tap do |array|
-        array[0], array[1], array[2] = colors if colors.length == 3
-        array[1] = colors                     if colors.length == 1
-        array[3] = match[1] || match[2]
-      end
+      colors = (match[0] || '').split(';')
+      array = Array.new(3)
+      array[0], array[1], array[2] = colors if colors.length == 3
+      array[1] = colors                     if colors.length == 1
+      array[3] = match[1] || match[2]
+      array
     end
 
     #
     # Require windows libs
     #
     def require_windows_libs
-      begin
-        require 'Win32/Console/ANSI' if RUBY_VERSION < "2.0.0" && RUBY_PLATFORM =~ /win32/
-      rescue LoadError
-        raise 'You must gem install win32console to use colorize on Windows'
-      end
+      require 'Win32/Console/ANSI' if RUBY_VERSION < '2.0.0' && RUBY_PLATFORM =~ /win32/
+    rescue LoadError
+      raise 'You must gem install win32console to use colorize on Windows'
     end
   end
 end
