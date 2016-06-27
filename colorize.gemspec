@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.homepage = 'http://github.com/fazibear/colorize'
   s.description = 'Extends String class or add a ColorizedString with methods to set text color, background color and text effects.'
   s.summary = 'Ruby gem for colorizing text using ANSI escape sequences.'
-  s.license = 'GPL-2'
+  s.license = 'GPL-2.0'
 
   s.require_paths = ['lib']
 
