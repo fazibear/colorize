@@ -6,18 +6,16 @@ module Colorize
     #
     def disable_colorization(value = nil)
       if value.nil?
-        @disable_colorization || false
+        defined?(@disable_colorization) ? @disable_colorization : false
       else
-        @disable_colorization = (value || false)
+        self.disable_colorization = value
       end
     end
 
     #
     # Setter for disable colorization
     #
-    def disable_colorization=(value)
-      @disable_colorization = (value || false)
-    end
+    attr_writer :disable_colorization
 
     #
     # Return array of available colors used by colorize
