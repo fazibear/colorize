@@ -6,7 +6,11 @@ module Colorize
     #
     def disable_colorization(value = nil)
       if value.nil?
-        @disable_colorization || false
+        if defined?(@disable_colorization)
+          @disable_colorization || false
+        else
+          false
+        end
       else
         @disable_colorization = (value || false)
       end
