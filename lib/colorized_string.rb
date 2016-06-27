@@ -9,11 +9,9 @@ class ColorizedString < String
 
   color_methods
   modes_methods
-end
 
-module Colorize
   #
-  # Sortcut to create ColorizedString with Colorize['test'].
+  # Sortcut to create ColorizedString with ColorizedString['test'].
   #
   def self.[](string)
     ColorizedString.new(string)
