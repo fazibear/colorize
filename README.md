@@ -88,7 +88,7 @@ install
 license
 -------
 
-Copyright (C) 2007-2015 Michał Kalbarczyk
+Copyright (C) 2007-2016 Michał Kalbarczyk
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
