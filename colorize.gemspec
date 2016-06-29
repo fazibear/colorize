@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'colorize'
-  s.version = '0.8.0'
+  s.version = '0.8.1'
 
   s.authors = ['Michał Kalbarczyk']
   s.email = 'fazibear@gmail.com'
@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
     'Rakefile',
     'colorize.gemspec',
     'lib/colorize.rb',
+    'lib/colorized_string.rb',
     'lib/colorize/class_methods.rb',
     'lib/colorize/instance_methods.rb',
     'test/test_colorize.rb',
