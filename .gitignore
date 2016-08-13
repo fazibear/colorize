@@ -1,5 +1,4 @@
-# svn propset svn:ignore -F .svnignore .
-# svn propedit svn:ignore .
+.DS_Store
 doc
 pkg
 .rake_tasks
