@@ -11,7 +11,7 @@ class ColorizedString < String
   modes_methods
 
   #
-  # Sortcut to create ColorizedString with ColorizedString['test'].
+  # Shortcut to create ColorizedString with ColorizedString['test'].
   #
   def self.[](string)
     ColorizedString.new(string)
