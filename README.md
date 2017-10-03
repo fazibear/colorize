@@ -37,6 +37,7 @@ String.disable_colorization true    # disable colorization
 puts "This is blue".colorize(:blue)
 puts "This is light blue".colorize(:light_blue)
 puts "This is also blue".colorize(:color => :blue)
+puts "This is bold green".colorize(:color => :green, :mode => :bold)
 puts "This is light blue with red background".colorize(:color => :light_blue, :background => :red)
 puts "This is light blue with red background".colorize(:light_blue ).colorize( :background => :red)
 puts "This is blue text on red".blue.on_red
@@ -61,6 +62,7 @@ ColorizedString.disable_colorization true    # disable colorization
 puts ColorizedString["This is blue"].colorize(:blue)
 puts ColorizedString["This is light blue"].colorize(:light_blue)
 puts ColorizedString["This is also blue"].colorize(:color => :blue)
+puts ColorizedString["This is bold green"].colorize(:color => :green, :mode => :bold)
 puts ColorizedString["This is light blue with red background"].colorize(:color => :light_blue, :background => :red)
 puts ColorizedString["This is light blue with red background"].colorize(:light_blue ).colorize( :background => :red)
 puts ColorizedString["This is blue text on red"].blue.on_red
