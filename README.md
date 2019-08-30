@@ -2,7 +2,7 @@ colorize [![Gem Version](https://badge.fury.io/rb/colorize.svg)](http://badge.fu
 ========
 
 Ruby gem for colorizing text using ANSI escape sequences.
-Extends `String` class or add a `ColorizedString` with methods to set text color, background color and text effects.
+Extends `String` class or add a `ColorizedString` with methods to set the text color, background color and text effects.
 
 modes
 -----
