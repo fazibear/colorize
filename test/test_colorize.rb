@@ -161,4 +161,12 @@ class TestColorize < Minitest::Test
       String.color_samples
     end
   end
+
+  def test_color_nonstring
+    assert_equal 1.blue, "\e[0;34;49m1\e[0m"
+  end
+
+  def test_color_array
+    assert_equal [1337, "NEETzsche", ["current year", Time.now], "h"].blue, ["\e[0;34;49m1337\e[0m", "\e[0;34;49mNEETzsche\e[0m", ["\e[0;34;49mcurrent year\e[0m", "\e[0;34;49m#{Time.now}\e[0m"], "\e[0;34;49mh\e[0m"]
+  end
 end

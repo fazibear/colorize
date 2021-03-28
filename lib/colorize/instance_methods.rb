@@ -18,8 +18,9 @@ module Colorize
     #
     def colorize(params)
       return self if self.class.disable_colorization
+      return self.collect { |obj| obj.colorize(params) } if self.is_a?(Enumerable)
       require_windows_libs
-      scan_for_colors.inject(self.class.new) do |str, match|
+      scan_for_colors.inject("") do |str, match|
         colors_from_params(match, params)
         defaults_colors(match)
         str << "\033[#{match[0]};#{match[1]};#{match[2]}m#{match[3]}\033[0m"
@@ -30,7 +31,7 @@ module Colorize
     # Return uncolorized string
     #
     def uncolorize
-      scan_for_colors.inject(self.class.new) do |str, match|
+      scan_for_colors.inject("") do |str, match|
         str << match[3]
       end
     end
@@ -106,7 +107,7 @@ module Colorize
     # Scan for colorized string
     #
     def scan_for_colors
-      scan(/\033\[([0-9;]+)m(.+?)\033\[0m|([^\033]+)/m).map do |match|
+      to_s.scan(/\033\[([0-9;]+)m(.+?)\033\[0m|([^\033]+)/m).map do |match|
         split_colors(match)
       end
     end
