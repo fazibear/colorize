@@ -4,7 +4,7 @@ require 'codeclimate-test-reporter'
 CodeClimate::TestReporter.start
 
 require 'minitest/autorun'
-require File.dirname(__FILE__) + '/../lib/colorized_string'
+require "#{File.dirname(__FILE__)}/../lib/colorized_string"
 
 class TestColorizedString < Minitest::Test
   def test_colorize_not_required
