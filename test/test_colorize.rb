@@ -4,7 +4,7 @@ require 'codeclimate-test-reporter'
 CodeClimate::TestReporter.start
 
 require 'minitest/autorun'
-require File.dirname(__FILE__) + '/../lib/colorize'
+require "#{File.dirname(__FILE__)}/../lib/colorize"
 
 class TestColorize < Minitest::Test
   def test_blue_symbol
@@ -94,13 +94,8 @@ class TestColorize < Minitest::Test
                  'none red none blue none'
   end
 
-  def test_frozen_strings
-    assert_equal 'This is blue text on red'.freeze.blue.on_red.blink,
-                 "\e[5;34;41mThis is blue text on red\e[0m"
-  end
-
   def test_new_line
-    assert_equal "This is blue\ntext on red".freeze.blue.on_red.blink,
+    assert_equal "This is blue\ntext on red".blue.on_red.blink,
                  "\e[5;34;41mThis is blue\ntext on red\e[0m"
   end
 
