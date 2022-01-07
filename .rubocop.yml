@@ -148,6 +148,10 @@ Style/GuardClause:
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#no-nested-conditionals
   Enabled: false
   MinBodyLength: 1
+Layout/HashAlignment:
+  Description: Check that the keys, separators, and values of a multi-line hash
+    literal are aligned according to configuration.
+  Enabled: false
 Style/HashSyntax:
   Description: 'Prefer Ruby 1.9 hash syntax { a: 1, b: 2 } over 1.8 syntax { :a =>
     1, :b => 2 }.'
