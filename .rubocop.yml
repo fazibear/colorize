@@ -417,7 +417,7 @@ Style/WordArray:
 Metrics/AbcSize:
   Description: A calculated magnitude based on number of assignments, branches, and
     conditions.
-  Enabled: true
+  Enabled: false
   Max: 15
 Metrics/BlockNesting:
   Description: Avoid excessive block nesting
