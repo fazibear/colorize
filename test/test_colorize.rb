@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'codeclimate-test-reporter'
-CodeClimate::TestReporter.start
-
 require 'minitest/autorun'
 require "#{File.dirname(__FILE__)}/../lib/colorize"
 
@@ -58,7 +55,7 @@ class TestColorize < Minitest::Test
                  "\e[0;31;44mThis is red on blue\e[0m"
   end
 
-  def test_red_with_blue_background_and_underline_sumbol_and_methods
+  def test_red_with_blue_background_and_underline_symbol_and_methods
     assert_equal 'This is red on blue and underline'.colorize(:red).on_blue.underline,
                  "\e[4;31;44mThis is red on blue and underline\e[0m"
   end
