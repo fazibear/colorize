@@ -3,7 +3,7 @@
 Gem::Specification.new do |s|
   s.name = 'colorize'
   s.version = '0.8.1'
-  s.required_ruby_version = '>= 2.5'
+  s.required_ruby_version = '>= 2.6'
 
   s.authors = ['Michał Kalbarczyk']
   s.email = 'fazibear@gmail.com'

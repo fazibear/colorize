@@ -144,4 +144,27 @@ class TestColorizedString < Minitest::Test
       ColorizedString.color_samples
     end
   end
+
+  def test_grey_alias
+    assert_equal ColorizedString['This is grey'].grey, ColorizedString['This is grey'].light_black
+  end
+
+  def test_gray_alias
+    assert_equal ColorizedString['This is gray'].gray, ColorizedString['This is gray'].light_black
+  end
+
+  def test_add_color_alias
+    ColorizedString.add_color_alias(:extra_blue, :light_blue)
+
+    assert_equal ColorizedString['blue'].light_blue, ColorizedString['blue'].extra_blue
+    assert_equal ColorizedString['blue'].on_light_blue, ColorizedString['blue'].on_extra_blue
+
+    assert_raises ::Colorize::ColorAlreadyExist, 'Colorize: color :extra_blue already exist!' do
+      ColorizedString.add_color_alias(:extra_blue, :light_color)
+    end
+
+    assert_raises ::Colorize::ColorDontExist, 'Colorize: color :light_color don\'t exist!' do
+      ColorizedString.add_color_alias(:extra_white, :light_color)
+    end
+  end
 end
