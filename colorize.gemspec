@@ -1,11 +1,12 @@
+# frozen_string_literal: true
+
 Gem::Specification.new do |s|
   s.name = 'colorize'
   s.version = '0.8.1'
+  s.required_ruby_version = '>= 2.5'
 
   s.authors = ['Michał Kalbarczyk']
   s.email = 'fazibear@gmail.com'
-
-  s.date = Time.now.strftime('%Y-%m-%d')
 
   s.homepage = 'http://github.com/fazibear/colorize'
   s.description = 'Extends String class or add a ColorizedString with methods to set text color, background color and text effects.'
@@ -14,10 +15,10 @@ Gem::Specification.new do |s|
 
   s.require_paths = ['lib']
 
-  s.add_development_dependency 'rake', '~> 10.0'
-  s.add_development_dependency 'minitest', '~> 5.0'
   s.add_development_dependency 'codeclimate-test-reporter', '~> 0.4'
   s.add_development_dependency 'json', '~> 1.0'
+  s.add_development_dependency 'minitest', '~> 5.0'
+  s.add_development_dependency 'rake', '~> 10.0'
 
   s.files = [
     'LICENSE',
@@ -32,6 +33,7 @@ Gem::Specification.new do |s|
     'test/test_colorize.rb',
   ]
   s.test_files = [
-    'test/test_colorize.rb'
+    'test/test_colorize.rb',
   ]
+  s.metadata['rubygems_mfa_required'] = 'true'
 end
