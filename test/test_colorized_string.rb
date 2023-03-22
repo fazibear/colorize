@@ -109,13 +109,17 @@ class TestColorizedString < Minitest::Test
 
   def test_disable_colorization_with_=
     ColorizedString.disable_colorization = true
+
     assert_equal ColorizedString.disable_colorization, true
+
     ColorizedString.disable_colorization = false
   end
 
   def test_disable_colorization_with_method
     ColorizedString.disable_colorization true
+
     assert_equal ColorizedString.disable_colorization, true
+
     ColorizedString.disable_colorization false
   end
 

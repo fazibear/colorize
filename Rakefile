@@ -7,7 +7,7 @@ Rake::TestTask.new do |t|
 end
 
 desc 'Run tests'
-task :default do
+task :tests do
   ENV['TEST'] = 'test/test_colorize.rb'
   Rake::Task[:test].execute
   ENV['TEST'] = 'test/test_colorized_string.rb'

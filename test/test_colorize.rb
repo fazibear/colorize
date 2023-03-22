@@ -5,18 +5,18 @@ require "#{File.dirname(__FILE__)}/../lib/colorize"
 
 class TestColorize < Minitest::Test
   def test_blue_symbol
-    assert_equal 'This is blue'.colorize(:blue),
-                 "\e[0;34;49mThis is blue\e[0m"
+    assert_equal "\e[0;34;49mThis is blue\e[0m",
+                 'This is blue'.colorize(:blue)
   end
 
   def test_incorrect_symbol
-    assert_equal 'This is incorrect color'.colorize(:bold),
-                 "\e[0;39;49mThis is incorrect color\e[0m"
+    assert_equal "\e[0;39;49mThis is incorrect color\e[0m",
+                 'This is incorrect color'.colorize(:bold)
   end
 
   def test_incorrect_hash
-    assert_equal 'This is incorrect color'.colorize(:color => :bold),
-                 "\e[0;39;49mThis is incorrect color\e[0m"
+    assert_equal "\e[0;39;49mThis is incorrect color\e[0m",
+                 'This is incorrect color'.colorize(:color => :bold)
 
     assert_equal 'This is incorrect color'.colorize(:mode => :green),
                  "\e[0;39;49mThis is incorrect color\e[0m"
@@ -98,13 +98,17 @@ class TestColorize < Minitest::Test
 
   def test_disable_colorization_with_=
     String.disable_colorization = true
+
     assert_equal String.disable_colorization, true
+
     String.disable_colorization = false
   end
 
   def test_disable_colorization_with_method
     String.disable_colorization true
+
     assert_equal String.disable_colorization, true
+
     String.disable_colorization false
   end
 
