@@ -1,0 +1,25 @@
+name: Ruby Gem
+
+jobs:
+  build:
+    name: Build + Test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Ruby
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 3.x
+    - name: Bundle
+      run: |
+        bundle install
+    - name: Run tests
+      run: |
+        bundle exec rake tests
+    - name: Run rubocop
+      run: |
+        bundle exec rubocop
