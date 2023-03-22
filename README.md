@@ -1,4 +1,4 @@
-colorize [![Gem Version](https://badge.fury.io/rb/colorize.svg)](http://badge.fury.io/rb/colorize) [![Build Status](https://travis-ci.org/fazibear/colorize.svg?branch=master)](https://travis-ci.org/fazibear/colorize) [![Code Climate](https://codeclimate.com/github/fazibear/colorize/badges/gpa.svg)](https://codeclimate.com/github/fazibear/colorize) [![Test Coverage](https://codeclimate.com/github/fazibear/colorize/badges/coverage.svg)](https://codeclimate.com/github/fazibear/colorize)
+colorize [![Gem Version](https://badge.fury.io/rb/colorize.svg)](http://badge.fury.io/rb/colorize) [![Ruby Gem](https://github.com/fazibear/colorize/actions/workflows/gem-push.yml/badge.svg)](https://github.com/fazibear/colorize/actions/workflows/gem-push.yml) [![Code Climate](https://codeclimate.com/github/fazibear/colorize/badges/gpa.svg)](https://codeclimate.com/github/fazibear/colorize) [![Test Coverage](https://codeclimate.com/github/fazibear/colorize/badges/coverage.svg)](https://codeclimate.com/github/fazibear/colorize)
 ========
 
 Ruby gem for colorizing text using ANSI escape sequences.
