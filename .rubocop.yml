@@ -1106,7 +1106,7 @@ Minitest/EmptyLineBeforeAssertionMethods: # new in 0.23
 Minitest/LifecycleHooksOrder: # new in 0.28
   Enabled: true
 Minitest/LiteralAsActualArgument: # new in 0.10
-  Enabled: false
+  Enabled: true
 Minitest/MultipleAssertions: # new in 0.10
   Enabled: true
 Minitest/NonPublicTestMethod: # new in 0.27
