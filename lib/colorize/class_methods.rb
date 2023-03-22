@@ -3,25 +3,40 @@
 module Colorize
   module ClassMethods
     @@color_codes ||= {
-      :black   => 0, :light_black    => 60,
-      :red     => 1, :light_red      => 61,
-      :green   => 2, :light_green    => 62,
-      :yellow  => 3, :light_yellow   => 63,
-      :blue    => 4, :light_blue     => 64,
-      :magenta => 5, :light_magenta  => 65,
-      :cyan    => 6, :light_cyan     => 66,
-      :white   => 7, :light_white    => 67,
-      :default => 9
+      black:        30,
+      red:          31,
+      green:        32,
+      yellow:       33,
+      blue:         34,
+      purple:       35,
+      cyan:         36,
+      white:        37,
+      default:      39,
+      light_black:  90,
+      light_red:    91,
+      light_green:  92,
+      light_yellow: 93,
+      light_blue:   94,
+      light_purple: 95,
+      light_cyan:   96,
+      light_white:  97
     }
 
     @@mode_codes ||= {
-      :default   => 0, # Turn off all attributes
-      :bold      => 1, # Set bold mode
-      :italic    => 3, # Set italic mode
-      :underline => 4, # Set underline mode
-      :blink     => 5, # Set blink mode
-      :swap      => 7, # Exchange foreground and background colors
-      :hide      => 8  # Hide text (foreground color would be the same as background)
+      default:          0, # Turn off all attributes
+      bold:             1,
+      dim:              2,
+      italic:           3,
+      underline:        4,
+      blink:            5,
+      blink_slow:       5,
+      blink_fast:       6,
+      invert:           7,
+      hide:             8,
+      strike:           9,
+      double_underline: 20,
+      reveal:           28,
+      overlined:        53
     }
 
     #
@@ -140,6 +155,7 @@ module Colorize
     def add_color_alias(_alias_, _color_)
       color_codes[_alias_] && fail(::Colorize::ColorAlreadyExist, "Colorize: color named :#{_alias_} already exist!")
       color = color_codes[_color_] || fail(::Colorize::ColorDontExist, "Colorize: color :#{_color_} don't exist!")
+
       add_color_code(_alias_, color)
       add_color_method(_alias_)
     end
