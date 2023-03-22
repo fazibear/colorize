@@ -20,6 +20,9 @@ jobs:
       uses: actions/setup-ruby@v1
       with:
         ruby-version: 3.x
+    - name: Bundle
+      run: |
+        bundle install
     - name: Run tests
       run: |
         bundle exec rake tests
