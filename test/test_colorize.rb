@@ -59,12 +59,12 @@ class TestColorize < Minitest::Test
   def test_colorized?
     assert_predicate 'Red'.red, :colorized?
     refute_predicate 'Blue', :colorized?
-    refute_preficate 'Green'.blue.green.uncolorize, :colorized?
+    refute_predicate 'Green'.blue.green.uncolorize, :colorized?
   end
 
   def test_concatenated__colorize?
     assert_predicate "none #{'red'.red} none #{'blue'.blue} none", :colorized?
-    refute_preficate "none #{'red'.red} none #{'blue'.blue} none".uncolorize, :colorized?
+    refute_predicate "none #{'red'.red} none #{'blue'.blue} none".uncolorize, :colorized?
   end
 
   def test_concatenated_strings_on_green
