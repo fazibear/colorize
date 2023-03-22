@@ -5,26 +5,27 @@ on:
   pull_request:
     branches: [ "**" ]
 
+permissions:
+  contents: read
+
 jobs:
-  build:
+  test:
     name: Build + Test
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-
+    strategy:
+      matrix:
+        ruby-version: ['2.5', '2.6', '2.7', '3.0']
     steps:
     - uses: actions/checkout@v3
     - name: Set up Ruby
-      uses: actions/setup-ruby@v1
+    # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
+    # change this to (see https://github.com/ruby/setup-ruby#versioning):
+    # uses: ruby/setup-ruby@v1
+      uses: ruby/setup-ruby@ee2113536afb7f793eed4ce60e8d3b26db912da4 # v1.127.0
       with:
-        ruby-version: 3.x
-    - name: Bundle
-      run: |
-        bundle install
+        ruby-version: ${{ matrix.ruby-version }}
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Run tests
-      run: |
-        bundle exec rake tests
+      run: bundle exec rake
     - name: Run rubocop
-      run: |
-        bundle exec rubocop
+      run: bundle exec rubocop
