@@ -4,5 +4,5 @@
 # Gem version
 #
 module Colorize
-  VERSION = '0.0.0'
+  VERSION = '1.0.0.beta'
 end
