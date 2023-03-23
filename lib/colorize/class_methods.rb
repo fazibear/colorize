@@ -86,10 +86,16 @@ module Colorize
     end
 
     #
-    # Method removed, raise NoMethodError
+    # Add color alias
     #
-    def color_matrix(_ = '')
-      fail NoMethodError, '#color_matrix method was removed, try #color_samples instead'
+    def add_color_alias(*params)
+      parse_color_alias_params(params).each do |_alias_, _color_|
+        check_if_color_available!(_alias_)
+        check_if_color_exist!(_color_)
+
+        add_color_code(_alias_, color_codes[_color_])
+        add_color_method(_alias_)
+      end
     end
 
     # private
@@ -149,15 +155,27 @@ module Colorize
       end
     end
 
-    #
-    # Add color alias
-    #
-    def add_color_alias(_alias_, _color_)
-      color_codes[_alias_] && fail(::Colorize::ColorAlreadyExist, "Colorize: color named :#{_alias_} already exist!")
-      color = color_codes[_color_] || fail(::Colorize::ColorDontExist, "Colorize: color :#{_color_} don't exist!")
+    def parse_color_alias_params(params)
+      return [params] if params.is_a?(Array) && params.length == 2
 
-      add_color_code(_alias_, color)
-      add_color_method(_alias_)
+      params.map do |param|
+        next param if param.is_a?(Array) && param.length == 2
+        next param.to_a if param.is_a?(Hash)
+      end.flatten(1)
+    end
+
+    #
+    # Check if color exists
+    #
+    def check_if_color_available!(color)
+      color_codes[color] && fail(::Colorize::ColorAlreadyExist, "Colorize: color named :#{color} already exist!")
+    end
+
+    #
+    # Check if color is missing
+    #
+    def check_if_color_exist!(color)
+      color_codes[color] || fail(::Colorize::ColorDontExist, "Colorize: color :#{color} don't exist!")
     end
   end
 end

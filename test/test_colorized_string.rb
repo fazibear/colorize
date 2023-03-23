@@ -167,4 +167,39 @@ class TestColorizedString < Minitest::Test
       ColorizedString.add_color_alias(:extra_white, :light_color)
     end
   end
+
+  def test_add_color_alias_with_single_hash
+    ColorizedString.add_color_alias(extra_green: :light_green)
+
+    assert_equal ColorizedString['example string'].light_green, ColorizedString['example string'].extra_green
+    assert_equal ColorizedString['example string'].on_light_green, ColorizedString['example string'].on_extra_green
+  end
+
+  def test_add_color_alias_with_single_hash_with_arrow
+    ColorizedString.add_color_alias(:extra_color => :gray)
+
+    assert_equal ColorizedString['example string'].gray, ColorizedString['example string'].extra_color
+    assert_equal ColorizedString['example string'].on_gray, ColorizedString['example string'].on_extra_color
+  end
+
+  def test_add_color_alias_with_multi_hash
+    ColorizedString.add_color_alias(extra_color_1: :gray, extra_color_2: :blue)
+
+    assert_equal ColorizedString['example string'].gray, ColorizedString['example string'].extra_color_1
+    assert_equal ColorizedString['example string'].blue, ColorizedString['example string'].extra_color_2
+  end
+
+  def test_add_color_alias_with_multi_hash_with_arrow
+    ColorizedString.add_color_alias(:extra_color_3 => :gray, :extra_color_4 => :blue)
+
+    assert_equal ColorizedString['example string'].gray, ColorizedString['example string'].extra_color_3
+    assert_equal ColorizedString['example string'].on_blue, ColorizedString['example string'].on_extra_color_4
+  end
+
+  def test_add_color_alias_with_multi_hash_mixed
+    ColorizedString.add_color_alias(extra_color_5: :gray, :extra_color_6 => :blue)
+
+    assert_equal ColorizedString['example string'].gray, ColorizedString['example string'].extra_color_5
+    assert_equal ColorizedString['example string'].on_blue, ColorizedString['example string'].on_extra_color_6
+  end
 end

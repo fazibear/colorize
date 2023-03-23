@@ -150,13 +150,52 @@ class TestColorize < Minitest::Test
 
     assert_equal 'blue'.light_blue, 'blue'.extra_blue
     assert_equal 'blue'.on_light_blue, 'blue'.on_extra_blue
+  end
 
-    assert_raises ::Colorize::ColorAlreadyExist, 'Colorize: color :extra_blue already exist!' do
-      String.add_color_alias(:extra_blue, :light_color)
+  def test_add_color_alias_errors
+    String.add_color_alias(:extra_red, :light_red)
+
+    assert_raises ::Colorize::ColorAlreadyExist, 'Colorize: color :extra_red already exist!' do
+      String.add_color_alias(:extra_red, :light_blue)
     end
 
     assert_raises ::Colorize::ColorDontExist, 'Colorize: color :light_color don\'t exist!' do
       String.add_color_alias(:extra_white, :light_color)
     end
+  end
+
+  def test_add_color_alias_with_single_hash
+    String.add_color_alias(extra_green: :light_green)
+
+    assert_equal 'example string'.light_green, 'example string'.extra_green
+    assert_equal 'example string'.on_light_green, 'example string'.on_extra_green
+  end
+
+  def test_add_color_alias_with_single_hash_with_arrow
+    String.add_color_alias(:extra_color => :gray)
+
+    assert_equal 'example string'.gray, 'example string'.extra_color
+    assert_equal 'example string'.on_gray, 'example string'.on_extra_color
+  end
+
+  def test_add_color_alias_with_multi_hash
+    String.add_color_alias(extra_color_1: :gray, extra_color_2: :blue)
+
+    assert_equal 'example string'.gray, 'example string'.extra_color_1
+    assert_equal 'example string'.blue, 'example string'.extra_color_2
+  end
+
+  def test_add_color_alias_with_multi_hash_with_arrow
+    String.add_color_alias(:extra_color_3 => :gray, :extra_color_4 => :blue)
+
+    assert_equal 'example string'.gray, 'example string'.extra_color_3
+    assert_equal 'example string'.on_blue, 'example string'.on_extra_color_4
+  end
+
+  def test_add_color_alias_with_multi_hash_mixed
+    String.add_color_alias(extra_color_5: :gray, :extra_color_6 => :blue)
+
+    assert_equal 'example string'.gray, 'example string'.extra_color_5
+    assert_equal 'example string'.on_blue, 'example string'.on_extra_color_6
   end
 end
