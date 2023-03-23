@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require File.expand_path('lib/colorize/version', File.dirname(__FILE__))
 
 Gem::Specification.new do |s|
