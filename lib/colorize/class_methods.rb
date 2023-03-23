@@ -2,18 +2,55 @@
 
 module Colorize
   module ClassMethods
+    @@color_codes ||= {
+      black:        30,
+      red:          31,
+      green:        32,
+      yellow:       33,
+      blue:         34,
+      purple:       35,
+      cyan:         36,
+      white:        37,
+      default:      39,
+      light_black:  90,
+      light_red:    91,
+      light_green:  92,
+      light_yellow: 93,
+      light_blue:   94,
+      light_purple: 95,
+      light_cyan:   96,
+      light_white:  97
+    }
+
+    @@mode_codes ||= {
+      default:          0, # Turn off all attributes
+      bold:             1,
+      dim:              2,
+      italic:           3,
+      underline:        4,
+      blink:            5,
+      blink_slow:       5,
+      blink_fast:       6,
+      invert:           7,
+      hide:             8,
+      strike:           9,
+      double_underline: 20,
+      reveal:           28,
+      overlined:        53
+    }
+
     #
     # Property to disable colorization
     #
     def disable_colorization(value = nil)
       if value.nil?
-        if defined?(@disable_colorization)
-          @disable_colorization || false
+        if defined?(@@disable_colorization)
+          @@disable_colorization || false
         else
           false
         end
       else
-        @disable_colorization = (value || false)
+        @@disable_colorization = (value || false)
       end
     end
 
@@ -21,7 +58,7 @@ module Colorize
     # Setter for disable colorization
     #
     def disable_colorization=(value)
-      @disable_colorization = (value || false)
+      @@disable_colorization = (value || false)
     end
 
     #
@@ -49,10 +86,16 @@ module Colorize
     end
 
     #
-    # Method removed, raise NoMethodError
+    # Add color alias
     #
-    def color_matrix(_ = '')
-      fail NoMethodError, '#color_matrix method was removed, try #color_samples instead'
+    def add_color_alias(*params)
+      parse_color_alias_params(params).each do |_alias_, _color_|
+        check_if_color_available!(_alias_)
+        check_if_color_exist!(_color_)
+
+        add_color_code(_alias_, color_codes[_color_])
+        add_color_method(_alias_)
+      end
     end
 
     # private
@@ -61,32 +104,18 @@ module Colorize
     # Color codes hash
     #
     def color_codes
-      {
-        :black   => 0, :light_black    => 60,
-        :red     => 1, :light_red      => 61,
-        :green   => 2, :light_green    => 62,
-        :yellow  => 3, :light_yellow   => 63,
-        :blue    => 4, :light_blue     => 64,
-        :magenta => 5, :light_magenta  => 65,
-        :cyan    => 6, :light_cyan     => 66,
-        :white   => 7, :light_white    => 67,
-        :default => 9
-      }
+      @@color_codes
+    end
+
+    def add_color_code(code, color)
+      @@color_codes[code] = color
     end
 
     #
     # Mode codes hash
     #
     def mode_codes
-      {
-        :default   => 0, # Turn off all attributes
-        :bold      => 1, # Set bold mode
-        :italic    => 3, # Set italic mode
-        :underline => 4, # Set underline mode
-        :blink     => 5, # Set blink mode
-        :swap      => 7, # Exchange foreground and background colors
-        :hide      => 8  # Hide text (foreground color would be the same as background)
-      }
+      @@mode_codes
     end
 
     #
@@ -96,13 +125,20 @@ module Colorize
       colors.each do |key|
         next if key == :default
 
-        define_method key do
-          colorize(:color => key)
-        end
+        add_color_method(key)
+      end
+    end
 
-        define_method "on_#{key}" do
-          colorize(:background => key)
-        end
+    #
+    # Generate color and on_color method
+    #
+    def add_color_method(key)
+      define_method key do
+        colorize(:color => key)
+      end
+
+      define_method "on_#{key}" do
+        colorize(:background => key)
       end
     end
 
@@ -117,6 +153,29 @@ module Colorize
           colorize(:mode => key)
         end
       end
+    end
+
+    def parse_color_alias_params(params)
+      return [params] if params.is_a?(Array) && params.length == 2
+
+      params.flat_map do |param|
+        next param if param.is_a?(Array) && param.length == 2
+        next param.to_a if param.is_a?(Hash)
+      end
+    end
+
+    #
+    # Check if color exists
+    #
+    def check_if_color_available!(color)
+      color_codes[color] && fail(::Colorize::ColorAlreadyExist, "Colorize: color named :#{color} already exist!")
+    end
+
+    #
+    # Check if color is missing
+    #
+    def check_if_color_exist!(color)
+      color_codes[color] || fail(::Colorize::ColorDontExist, "Colorize: color :#{color} don't exist!")
     end
   end
 end

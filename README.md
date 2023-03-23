@@ -34,6 +34,13 @@ String.disable_colorization false   # enable colorization
 String.disable_colorization = true  # disable colorization
 String.disable_colorization true    # disable colorization
 
+# adding aliases
+
+String.add_color_alias(:niebieski, :blue)
+String.add_color_alias(:zielony => :green) 
+String.add_color_alias(czarny: :black)
+String.add_color_alias(czerwony: :red, granatowy: :blue)
+
 puts "This is blue".colorize(:blue)
 puts "This is light blue".colorize(:light_blue)
 puts "This is also blue".colorize(:color => :blue)
@@ -58,6 +65,13 @@ ColorizedString.disable_colorization = false # enable colorization
 ColorizedString.disable_colorization false   # enable colorization
 ColorizedString.disable_colorization = true  # disable colorization
 ColorizedString.disable_colorization true    # disable colorization
+
+# adding aliases
+
+ColorizedString.add_color_alias(:niebieski, :blue)
+ColorizedString.add_color_alias(:zielony => :green) 
+ColorizedString.add_color_alias(czarny: :black)
+ColorizedString.add_color_alias(czerwony: :red, granatowy: :blue)
 
 puts ColorizedString["This is blue"].colorize(:blue)
 puts ColorizedString["This is light blue"].colorize(:light_blue)

@@ -136,4 +136,66 @@ class TestColorize < Minitest::Test
       String.color_samples
     end
   end
+
+  def test_grey_alias
+    assert_equal 'This is grey'.grey, 'This is grey'.light_black
+  end
+
+  def test_gray_alias
+    assert_equal 'This is gray'.gray, 'This is gray'.light_black
+  end
+
+  def test_add_color_alias
+    String.add_color_alias(:extra_blue, :light_blue)
+
+    assert_equal 'blue'.light_blue, 'blue'.extra_blue
+    assert_equal 'blue'.on_light_blue, 'blue'.on_extra_blue
+  end
+
+  def test_add_color_alias_errors
+    String.add_color_alias(:extra_red, :light_red)
+
+    assert_raises ::Colorize::ColorAlreadyExist, 'Colorize: color :extra_red already exist!' do
+      String.add_color_alias(:extra_red, :light_blue)
+    end
+
+    assert_raises ::Colorize::ColorDontExist, 'Colorize: color :light_color don\'t exist!' do
+      String.add_color_alias(:extra_white, :light_color)
+    end
+  end
+
+  def test_add_color_alias_with_single_hash
+    String.add_color_alias(extra_green: :light_green)
+
+    assert_equal 'example string'.light_green, 'example string'.extra_green
+    assert_equal 'example string'.on_light_green, 'example string'.on_extra_green
+  end
+
+  def test_add_color_alias_with_single_hash_with_arrow
+    String.add_color_alias(:extra_color => :gray)
+
+    assert_equal 'example string'.gray, 'example string'.extra_color
+    assert_equal 'example string'.on_gray, 'example string'.on_extra_color
+  end
+
+  def test_add_color_alias_with_multi_hash
+    String.add_color_alias(extra_color_a: :gray, extra_color_b: :blue)
+
+    assert_equal 'example string'.gray, 'example string'.extra_color_a
+    assert_equal 'example string'.blue, 'example string'.extra_color_b
+  end
+
+  def test_add_color_alias_with_multi_hash_with_arrow
+    String.add_color_alias(:extra_color_c => :gray, :extra_color_d => :blue)
+
+    assert_equal 'example string'.gray, 'example string'.extra_color_c
+    assert_equal 'example string'.on_blue, 'example string'.on_extra_color_d
+  end
+
+  def test_add_color_alias_with_multi_hash_mixed
+    String.add_color_alias(extra_color_e: :gray, :extra_color_f => :blue)
+
+    assert_equal 'example string'.gray, 'example string'.extra_color_e
+    assert_equal 'example string'.on_blue, 'example string'.on_extra_color_f
+  end
 end

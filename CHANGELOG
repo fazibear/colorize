@@ -1,3 +1,10 @@
+== 1.0.0 / 2023-03-23
+  * add more modes
+  * add aliases
+  * grey and gray default aliases
+  * update dependencies
+  * cleanup and refactor
+
 == 0.8.1 / 2016-06-29
   * fix gemspec bug
 

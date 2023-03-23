@@ -21,7 +21,6 @@ module Colorize
     def colorize(params)
       return self if self.class.disable_colorization
 
-      require_windows_libs
       scan_for_colors.inject(self.class.new) do |str, match|
         colors_from_params(match, params)
         defaults_colors(match)
@@ -88,14 +87,14 @@ module Colorize
     # Color for foreground (offset 30)
     #
     def color(color)
-      self.class.color_codes[color] + 30 if self.class.color_codes[color]
+      self.class.color_codes[color]
     end
 
     #
     # Color for background (offset 40)
     #
     def background_color(color)
-      self.class.color_codes[color] + 40 if self.class.color_codes[color]
+      self.class.color_codes[color] + 10 if self.class.color_codes[color]
     end
 
     #
