@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.0-pre.1](https://github.com/fazibear/colorize/compare/v1.0.0-1...v1.0.0-pre.1) (2023-03-23)
+
+
+### Miscellaneous Chores
+
+* release 1.0.0.pre.1 ([#89](https://github.com/fazibear/colorize/issues/89)) ([7a136db](https://github.com/fazibear/colorize/commit/7a136db3f77fe45eb6077b3696ae5fe49464fe95))
+
 ## 1.0.0 / 2023-03-23
   - add more modes
   - add aliases
