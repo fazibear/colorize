@@ -2,7 +2,8 @@ name: Release Ruby Gem
 on:
   push:
     branches:
-      - "main" # main only
+      - "master"
+
 jobs:
   release:
     runs-on: ubuntu-latest
