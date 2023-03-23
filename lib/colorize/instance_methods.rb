@@ -24,7 +24,7 @@ module Colorize
       scan_for_colors.inject(self.class.new) do |str, match|
         colors_from_params(match, params)
         defaults_colors(match)
-        str << "\033[#{match[0]};#{match[1]};#{match[2]}m#{match[3]}\033[0m"
+        str << "\001\033[#{match[0]};#{match[1]};#{match[2]}m\002#{match[3]}\001\033[0m\002"
       end
     end
 
@@ -108,7 +108,7 @@ module Colorize
     # Scan for colorized string
     #
     def scan_for_colors
-      scan(/\033\[([0-9;]+)m(.+?)\033\[0m|([^\033]+)/m).map do |match|
+      scan(/\001\033\[([0-9;]+)m\002(.+?)\001\033\[0m\002|([^\001\033]+)/m).map do |match|
         split_colors(match)
       end
     end

@@ -5,51 +5,51 @@ require "#{File.dirname(__FILE__)}/../lib/colorize"
 
 class TestColorize < Minitest::Test
   def test_blue_symbol
-    assert_equal "\e[0;34;49mThis is blue\e[0m", 'This is blue'.colorize(:blue)
+    assert_equal "\001\033[0;34;49m\002This is blue\001\033[0m\002", 'This is blue'.colorize(:blue)
   end
 
   def test_incorrect_symbol
-    assert_equal "\e[0;39;49mThis is incorrect color\e[0m",  'This is incorrect color'.colorize(:bold)
+    assert_equal "\001\033[0;39;49m\002This is incorrect color\001\033[0m\002",  'This is incorrect color'.colorize(:bold)
   end
 
   def test_incorrect_hash
-    assert_equal "\e[0;39;49mThis is incorrect color\e[0m", 'This is incorrect color'.colorize(:color => :bold)
+    assert_equal "\001\033[0;39;49m\002This is incorrect color\001\033[0m\002", 'This is incorrect color'.colorize(:color => :bold)
 
-    assert_equal "\e[0;39;49mThis is incorrect color\e[0m", 'This is incorrect color'.colorize(:mode => :green)
+    assert_equal "\001\033[0;39;49m\002This is incorrect color\001\033[0m\002", 'This is incorrect color'.colorize(:mode => :green)
 
-    assert_equal "\e[0;39;49mThis is incorrect color\e[0m", 'This is incorrect color'.colorize(:background => :bold)
+    assert_equal "\001\033[0;39;49m\002This is incorrect color\001\033[0m\002", 'This is incorrect color'.colorize(:background => :bold)
   end
 
   def test_blue_hash
-    assert_equal "\e[0;34;49mThis is also blue\e[0m", 'This is also blue'.colorize(:color => :blue)
+    assert_equal "\001\033[0;34;49m\002This is also blue\001\033[0m\002", 'This is also blue'.colorize(:color => :blue)
   end
 
   def test_light_blue_symbol
-    assert_equal "\e[0;94;49mThis is light blue\e[0m", 'This is light blue'.colorize(:light_blue)
+    assert_equal "\001\033[0;94;49m\002This is light blue\001\033[0m\002", 'This is light blue'.colorize(:light_blue)
   end
 
   def test_light_blue_with_red_background_hash
-    assert_equal "\e[0;94;41mThis is light blue with red background\e[0m", 'This is light blue with red background'.colorize(:color => :light_blue, :background => :red)
+    assert_equal "\001\033[0;94;41m\002This is light blue with red background\001\033[0m\002", 'This is light blue with red background'.colorize(:color => :light_blue, :background => :red)
   end
 
   def test_light_blue_with_red_background_symbol_and_hash
-    assert_equal "\e[0;94;41mThis is light blue with red background\e[0m", 'This is light blue with red background'.colorize(:light_blue).colorize(:background => :red)
+    assert_equal "\001\033[0;94;41m\002This is light blue with red background\001\033[0m\002", 'This is light blue with red background'.colorize(:light_blue).colorize(:background => :red)
   end
 
   def test_blue_with_red_background_method
-    assert_equal "\e[0;34;41mThis is blue text on red\e[0m", 'This is blue text on red'.blue.on_red
+    assert_equal "\001\033[0;34;41m\002This is blue text on red\001\033[0m\002", 'This is blue text on red'.blue.on_red
   end
 
   def test_red_with_blue_background_symbol_and_method
-    assert_equal "\e[0;31;44mThis is red on blue\e[0m", 'This is red on blue'.colorize(:red).on_blue
+    assert_equal "\001\033[0;31;44m\002This is red on blue\001\033[0m\002", 'This is red on blue'.colorize(:red).on_blue
   end
 
   def test_red_with_blue_background_and_underline_symbol_and_methods
-    assert_equal "\e[4;31;44mThis is red on blue and underline\e[0m", 'This is red on blue and underline'.colorize(:red).on_blue.underline
+    assert_equal "\001\033[4;31;44m\002This is red on blue and underline\001\033[0m\002", 'This is red on blue and underline'.colorize(:red).on_blue.underline
   end
 
   def test_blue_with_red_background_and_blink_methods
-    assert_equal "\e[5;34;41mThis is blue text on red\e[0m", 'This is blue text on red'.blue.on_red.blink
+    assert_equal "\001\033[5;34;41m\002This is blue text on red\001\033[0m\002", 'This is blue text on red'.blue.on_red.blink
   end
 
   def test_uncolorize
@@ -68,7 +68,7 @@ class TestColorize < Minitest::Test
   end
 
   def test_concatenated_strings_on_green
-    assert_equal "\e[0;39;42mnone \e[0m\e[0;31;42mred\e[0m\e[0;39;42m none \e[0m\e[0;34;42mblue\e[0m\e[0;39;42m none\e[0m", "none #{'red'.red} none #{'blue'.blue} none".on_green
+    assert_equal "\001\033[0;39;42m\002none \001\033[0m\002\001\033[0;31;42m\002red\001\033[0m\002\001\033[0;39;42m\002 none \001\033[0m\002\001\033[0;34;42m\002blue\001\033[0m\002\001\033[0;39;42m\002 none\001\033[0m\002", "none #{'red'.red} none #{'blue'.blue} none".on_green
   end
 
   def test_concatenated_strings_uncolorize
@@ -76,7 +76,7 @@ class TestColorize < Minitest::Test
   end
 
   def test_new_line
-    assert_equal "\e[5;34;41mThis is blue\ntext on red\e[0m", "This is blue\ntext on red".blue.on_red.blink
+    assert_equal "\001\033[5;34;41m\002This is blue\ntext on red\001\033[0m\002", "This is blue\ntext on red".blue.on_red.blink
   end
 
   def test_disable_colorization_with_=
@@ -104,11 +104,11 @@ class TestColorize < Minitest::Test
 
     String.disable_colorization = false
 
-    assert_equal "\e[0;34;49mThis is blue after enabling\e[0m", 'This is blue after enabling'.colorize(:blue)
+    assert_equal "\001\033[0;34;49m\002This is blue after enabling\001\033[0m\002", 'This is blue after enabling'.colorize(:blue)
   end
 
   def test_string_disable_colorization_with_method
-    assert_equal "\e[0;34;49mThis is blue before disabling\e[0m", 'This is blue before disabling'.colorize(:blue)
+    assert_equal "\001\033[0;34;49m\002This is blue before disabling\001\033[0m\002", 'This is blue before disabling'.colorize(:blue)
 
     String.disable_colorization true
 
@@ -118,11 +118,11 @@ class TestColorize < Minitest::Test
 
     String.disable_colorization false
 
-    assert_equal "\e[0;34;49mThis is blue after enabling\e[0m", 'This is blue after enabling'.colorize(:blue)
+    assert_equal "\001\033[0;34;49m\002This is blue after enabling\001\033[0m\002", 'This is blue after enabling'.colorize(:blue)
   end
 
   def test_already_colored_string_with_one_value
-    assert_equal 'This is red'.red, "\e[31mThis is red\e[0m".red
+    assert_equal 'This is red'.red, "\001\033[31m\002This is red\001\033[0m\002".red
   end
 
   def test_color_matrix_method
