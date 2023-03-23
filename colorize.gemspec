@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
 
   s.files = [
     'LICENSE',
-    'CHANGELOG',
+    'CHANGELOG.md',
     'README.md',
     'Rakefile',
     'colorize.gemspec',
