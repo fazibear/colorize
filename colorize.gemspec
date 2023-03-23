@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require File.expand_path('lib/colorize/version', File.dirname(__FILE__))
 
 Gem::Specification.new do |s|
   s.name = 'colorize'
@@ -35,6 +36,7 @@ Gem::Specification.new do |s|
     'lib/colorize/errors.rb',
     'lib/colorize/class_methods.rb',
     'lib/colorize/instance_methods.rb',
+    'lib/colorize/version.rb',
     'test/test_colorize.rb',
     'test/test_colorized_string.rb',
   ]

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require File.expand_path('colorize/version', File.dirname(__FILE__))
 require File.expand_path('colorize/errors', File.dirname(__FILE__))
 require File.expand_path('colorize/class_methods', File.dirname(__FILE__))
 require File.expand_path('colorize/instance_methods', File.dirname(__FILE__))

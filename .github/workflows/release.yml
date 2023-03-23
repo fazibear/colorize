@@ -1,4 +1,4 @@
-name: Release
+name: Release Ruby Gem
 on:
   push:
     branches:
