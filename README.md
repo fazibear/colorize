@@ -50,7 +50,7 @@ puts "This is light blue with red background".colorize(:light_blue ).colorize( :
 puts "This is blue text on red".blue.on_red
 puts "This is red on blue".colorize(:red).on_blue
 puts "This is red on blue and underline".colorize(:red).on_blue.underline
-puts "This is blue text on red".blue.on_red.blink
+puts "This is blinking blue text on red".blue.on_red.blink
 puts "This is uncolorized".blue.on_red.uncolorize
 ```
 
@@ -82,7 +82,7 @@ puts ColorizedString["This is light blue with red background"].colorize(:light_b
 puts ColorizedString["This is blue text on red"].blue.on_red
 puts ColorizedString["This is red on blue"].colorize(:red).on_blue
 puts ColorizedString["This is red on blue and underline"].colorize(:red).on_blue.underline
-puts ColorizedString["This is blue text on red"].blue.on_red.blink
+puts ColorizedString["This is blinking blue text on red"].blue.on_red.blink
 puts ColorizedString["This is uncolorized"].blue.on_red.uncolorize
 
 puts ColorizedString.new("This is blue").blue

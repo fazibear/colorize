@@ -3,6 +3,7 @@
   * add aliases
   * grey and gray default aliases
   * update dependencies
+  * support readline
   * cleanup and refactor
 
 == 0.8.1 / 2016-06-29
