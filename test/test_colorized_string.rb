@@ -207,7 +207,7 @@ class TestColorizedString < Minitest::Test
     ColorizedString.prevent_colors true
 
     assert ColorizedString.prevent_colors
-    assert_equal "#{'blue'.blue}#{'red'.red}#{'green'.green}", "#{'blue'.blue}red#{'green'.green}".red
+    assert_equal "#{ColorizedString['blue'].blue}#{ColorizedString['red'].red}#{ColorizedString['green'].green}", ColorizedString["#{ColorizedString['blue'].blue}red#{ColorizedString['green'].green}"].red
 
     ColorizedString.prevent_colors false
   end
