@@ -87,7 +87,7 @@ module Colorize
     # Color for foreground (offset 30)
     #
     def color(color)
-      self.class.color_codes[color] if self.class.color_codes[color]
+      self.class.color_codes[color]
     end
 
     #

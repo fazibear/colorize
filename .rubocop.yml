@@ -428,10 +428,15 @@ Metrics/BlockNesting:
   Enabled: false
   Max: 3
 Metrics/ClassLength:
-  Description: Avoid classes longer than 100 lines of code.
-  Enabled: false
+  Description: Avoid classes longer than 150 lines of code.
+  Enabled: true
   CountComments: false
-  Max: 100
+  Max: 150
+Metrics/ModuleLength:
+  Description: Avoid modules longer than 150 lines of code.
+  Enabled: true
+  CountComments: false
+  Max: 150
 Metrics/CyclomaticComplexity:
   Description: A complexity metric that is strongly correlated to the number of test
     cases needed to validate a method.
