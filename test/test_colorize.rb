@@ -179,23 +179,23 @@ class TestColorize < Minitest::Test
   end
 
   def test_add_color_alias_with_multi_hash
-    String.add_color_alias(extra_color_1: :gray, extra_color_2: :blue)
+    String.add_color_alias(extra_color_a: :gray, extra_color_b: :blue)
 
-    assert_equal 'example string'.gray, 'example string'.extra_color_1
-    assert_equal 'example string'.blue, 'example string'.extra_color_2
+    assert_equal 'example string'.gray, 'example string'.extra_color_a
+    assert_equal 'example string'.blue, 'example string'.extra_color_b
   end
 
   def test_add_color_alias_with_multi_hash_with_arrow
-    String.add_color_alias(:extra_color_3 => :gray, :extra_color_4 => :blue)
+    String.add_color_alias(:extra_color_c => :gray, :extra_color_d => :blue)
 
-    assert_equal 'example string'.gray, 'example string'.extra_color_3
-    assert_equal 'example string'.on_blue, 'example string'.on_extra_color_4
+    assert_equal 'example string'.gray, 'example string'.extra_color_c
+    assert_equal 'example string'.on_blue, 'example string'.on_extra_color_d
   end
 
   def test_add_color_alias_with_multi_hash_mixed
-    String.add_color_alias(extra_color_5: :gray, :extra_color_6 => :blue)
+    String.add_color_alias(extra_color_e: :gray, :extra_color_f => :blue)
 
-    assert_equal 'example string'.gray, 'example string'.extra_color_5
-    assert_equal 'example string'.on_blue, 'example string'.on_extra_color_6
+    assert_equal 'example string'.gray, 'example string'.extra_color_e
+    assert_equal 'example string'.on_blue, 'example string'.on_extra_color_f
   end
 end

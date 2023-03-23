@@ -158,10 +158,10 @@ module Colorize
     def parse_color_alias_params(params)
       return [params] if params.is_a?(Array) && params.length == 2
 
-      params.map do |param|
+      params.flat_map do |param|
         next param if param.is_a?(Array) && param.length == 2
         next param.to_a if param.is_a?(Hash)
-      end.flatten(1)
+      end
     end
 
     #
