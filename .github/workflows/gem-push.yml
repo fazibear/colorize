@@ -20,12 +20,10 @@ jobs:
       uses: actions/setup-ruby@v1
       with:
         ruby-version: 3.x
-    - name: Bundle
-      run: |
-        bundle install
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Run tests
       run: |
-        bundle exec rake tests
+        bundle exec rake
     - name: Run rubocop
       run: |
         bundle exec rubocop
