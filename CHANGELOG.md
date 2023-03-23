@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.0.0-1](https://github.com/fazibear/colorize/compare/v1.0.0-pre.1...v1.0.0-1) (2023-03-23)
+
+
+### Miscellaneous Chores
+
+* release 1.0.0-1 ([71a6adb](https://github.com/fazibear/colorize/commit/71a6adb36f77a491d0257403e93ea04605f3bf76))
+* release 1.0.0.pre.1 ([4d12451](https://github.com/fazibear/colorize/commit/4d12451a85b6602ce0953587cf53ca253f898360))
+* release 1.0.0.pre.1 ([ca5a56e](https://github.com/fazibear/colorize/commit/ca5a56efbfae94a029fdca34774fa7891a7f35c8))
+* release 1.0.0.pre.1 ([abb5c82](https://github.com/fazibear/colorize/commit/abb5c82063bb8448852552109bc994e1d2de332b))
+
 ## [1.0.0-pre.1](https://github.com/fazibear/colorize/compare/v1.0.0-pre...v1.0.0-pre.1) (2023-03-23)
 
 
