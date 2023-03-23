@@ -40,7 +40,7 @@ module Colorize
     }
 
     #
-    # Property to disable colorization
+    # Property for disable colorization
     #
     def disable_colorization(value = nil)
       if value.nil?
@@ -59,6 +59,28 @@ module Colorize
     #
     def disable_colorization=(value)
       @@disable_colorization = (value || false)
+    end
+
+    #
+    # Property for prevent recolorization
+    #
+    def prevent_colors(value = nil)
+      if value.nil?
+        if defined?(@@prevent_colors)
+          @@prevent_colors || false
+        else
+          false
+        end
+      else
+        @@prevent_colors = (value || false)
+      end
+    end
+
+    #
+    # Setter for prevent recolorization
+    #
+    def prevent_colors=(value)
+      @@prevent_colors = (value || false)
     end
 
     #
