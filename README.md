@@ -16,8 +16,10 @@ features
 * change string color
 * change string background
 * change string effect
+* chain methods
 * display color samples
 * disable colorization
+* prevent colors
 
 usage
 -----
@@ -29,17 +31,29 @@ String.colors                       # return array of all possible colors names
 String.modes                        # return array of all possible modes
 String.color_samples                # displays color samples in all combinations
 String.disable_colorization         # check if colorization is disabled
+
+# disable colorization (false by default)
+
 String.disable_colorization = false # enable colorization
 String.disable_colorization false   # enable colorization
 String.disable_colorization = true  # disable colorization
 String.disable_colorization true    # disable colorization
 
-# adding aliases
+# prevent colors (false by default)
+
+String.prevent_colors = false # override current string colors
+String.prevent_colors false   # override current string colors
+String.prevent_colors = true  # don't colorize colorized strings
+String.prevent_colors true    # don't colorize colorized strings
+
+# adding aliases (:gray and :grey added by default)
 
 String.add_color_alias(:niebieski, :blue)
 String.add_color_alias(:zielony => :green) 
 String.add_color_alias(czarny: :black)
 String.add_color_alias(czerwony: :red, granatowy: :blue)
+
+# examaples
 
 puts "This is blue".colorize(:blue)
 puts "This is light blue".colorize(:light_blue)
@@ -61,17 +75,29 @@ ColorizedString.colors                       # return array of all possible colo
 ColorizedString.modes                        # return array of all possible modes
 ColorizedString.color_samples                # displays color samples in all combinations
 ColorizedString.disable_colorization         # check if colorization is disabled
+
+# disable colorization (false by default)
+
 ColorizedString.disable_colorization = false # enable colorization
 ColorizedString.disable_colorization false   # enable colorization
 ColorizedString.disable_colorization = true  # disable colorization
 ColorizedString.disable_colorization true    # disable colorization
 
-# adding aliases
+# prevent colors (false by default)
+
+ColorizedString.prevent_colors = false # override current string colors
+ColorizedString.prevent_colors false   # override current string colors
+ColorizedString.prevent_colors = true  # don't colorize colorized strings
+ColorizedString.prevent_colors true    # don't colorize colorized strings
+
+# adding aliases (:gray and :grey added by default)
 
 ColorizedString.add_color_alias(:niebieski, :blue)
 ColorizedString.add_color_alias(:zielony => :green) 
 ColorizedString.add_color_alias(czarny: :black)
 ColorizedString.add_color_alias(czerwony: :red, granatowy: :blue)
+
+# examples
 
 puts ColorizedString["This is blue"].colorize(:blue)
 puts ColorizedString["This is light blue"].colorize(:light_blue)

@@ -71,27 +71,37 @@ module Colorize
     # Set colors from params hash
     #
     def colors_from_hash(match, hash)
-      match[0] = mode(hash[:mode])                   if mode(hash[:mode])
-      match[1] = color(hash[:color])                 if color(hash[:color])
-      match[2] = background_color(hash[:background]) if background_color(hash[:background])
+      if self.class.prevent_colors
+        match[0] ||= mode(hash[:mode])                   if mode(hash[:mode])
+        match[1] ||= color(hash[:color])                 if color(hash[:color])
+        match[2] ||= background_color(hash[:background]) if background_color(hash[:background])
+      else
+        match[0] = mode(hash[:mode])                   if mode(hash[:mode])
+        match[1] = color(hash[:color])                 if color(hash[:color])
+        match[2] = background_color(hash[:background]) if background_color(hash[:background])
+      end
     end
 
     #
     # Set color from params symbol
     #
     def color_from_symbol(match, symbol)
-      match[1] = color(symbol) if color(symbol)
+      if self.class.prevent_colors && color(symbol)
+        match[1] ||= color(symbol)
+      else
+        match[1] = color(symbol)
+      end
     end
 
     #
-    # Color for foreground (offset 30)
+    # Color for foreground
     #
     def color(color)
       self.class.color_codes[color]
     end
 
     #
-    # Color for background (offset 40)
+    # Color for background (offset 10)
     #
     def background_color(color)
       self.class.color_codes[color] + 10 if self.class.color_codes[color]

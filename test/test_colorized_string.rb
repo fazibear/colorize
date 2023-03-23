@@ -202,4 +202,13 @@ class TestColorizedString < Minitest::Test
     assert_equal ColorizedString['example string'].gray, ColorizedString['example string'].extra_color_e
     assert_equal ColorizedString['example string'].on_blue, ColorizedString['example string'].on_extra_color_f
   end
+
+  def test_prevent_colors
+    ColorizedString.prevent_colors true
+
+    assert ColorizedString.prevent_colors
+    assert_equal "#{ColorizedString['blue'].blue}#{ColorizedString['red'].red}#{ColorizedString['green'].green}", ColorizedString["#{ColorizedString['blue'].blue}red#{ColorizedString['green'].green}"].red
+
+    ColorizedString.prevent_colors false
+  end
 end

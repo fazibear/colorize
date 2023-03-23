@@ -198,4 +198,13 @@ class TestColorize < Minitest::Test
     assert_equal 'example string'.gray, 'example string'.extra_color_e
     assert_equal 'example string'.on_blue, 'example string'.on_extra_color_f
   end
+
+  def test_prevent_colors
+    String.prevent_colors true
+
+    assert String.prevent_colors
+    assert_equal "#{'blue'.blue}#{'red'.red}#{'green'.green}", "#{'blue'.blue}red#{'green'.green}".red
+
+    String.prevent_colors false
+  end
 end
