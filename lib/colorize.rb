@@ -3,6 +3,14 @@
 require File.expand_path('colorize/errors', File.dirname(__FILE__))
 require File.expand_path('colorize/class_methods', File.dirname(__FILE__))
 require File.expand_path('colorize/instance_methods', File.dirname(__FILE__))
+
+#
+# Gem version
+#
+module Colorize
+  VERSION = '1.0.0.pre'.freeze
+end
+
 #
 # String class extension.
 #

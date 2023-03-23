@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = 'colorize'
-  s.version = '1.0.0.pre'
+  s.version = Colorize::VERSION
   s.required_ruby_version = '>= 2.6'
 
   s.authors = ['Michał Kalbarczyk']
@@ -32,9 +32,11 @@ Gem::Specification.new do |s|
     'colorize.gemspec',
     'lib/colorize.rb',
     'lib/colorized_string.rb',
+    'lib/colorize/errors.rb',
     'lib/colorize/class_methods.rb',
     'lib/colorize/instance_methods.rb',
     'test/test_colorize.rb',
+    'test/test_colorized_string.rb',
   ]
 
   s.metadata['rubygems_mfa_required'] = 'true'
