@@ -13,9 +13,9 @@
   - fix gemspec bug
 
 ## 0.8.0 / 2016-06-27
-	* add ColorizedString class
-	* update README file
-	* add rubocop.yml and follow style
+	- add ColorizedString class
+	- update README file
+	- add rubocop.yml and follow style
   - add italic mode
   - remove interpreter warrnings
 
