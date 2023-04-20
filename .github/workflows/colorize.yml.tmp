@@ -1,0 +1,47 @@
+name: Colorize
+on:
+  push:
+    branches:
+      - "master"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          release-type: ruby
+          package-name: colorize
+          bump-minor-pre-major: true
+          version-file: "lib/colorize/version.rb"
+      - uses: actions/checkout@v3
+        if: ${{ steps.release.outputs.release_created }}
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.1
+          bundler-cache: true
+        if: ${{ steps.release.outputs.release_created }}
+      - name: Run tests
+        run: |
+          bundle exec rake
+        if: ${{ steps.release.outputs.release_created }}
+      - name: Run rubocop
+        run: |
+          bundle exec rubocop
+        if: ${{ steps.release.outputs.release_created }}
+      - name: publish gem
+        run: |
+          mkdir -p $HOME/.gem
+          touch $HOME/.gem/credentials
+          chmod 0600 $HOME/.gem/credentials
+          printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
+          gem build *.gemspec
+          gem push *.gem
+        env:
+          GEM_HOST_API_KEY: "${{secrets.RUBYGEMS_AUTH_TOKEN}}"
+        if: ${{ steps.release.outputs.release_created }}
