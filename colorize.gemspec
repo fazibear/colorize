@@ -17,15 +17,6 @@ Gem::Specification.new do |s|
 
   s.require_paths = ['lib']
 
-  s.add_development_dependency 'json', '~> 2.0'
-  s.add_development_dependency 'minitest', '~> 5.0'
-  s.add_development_dependency 'rake', '~> 13.0'
-  s.add_development_dependency 'rubocop', '~> 1.0'
-  s.add_development_dependency 'rubocop-github', '~> 0.20'
-  s.add_development_dependency 'rubocop-minitest', '~> 0.29.0'
-  s.add_development_dependency 'rubocop-performance', '~> 1.16'
-  s.add_development_dependency 'rubocop-rake', '~> 0.6'
-
   s.files = [
     'LICENSE',
     'CHANGELOG.md',

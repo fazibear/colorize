@@ -134,9 +134,7 @@ class TestColorizedString < Minitest::Test
   end
 
   def test_color_matrix_method
-    assert_raises NoMethodError do
-      ColorizedString.color_matrix
-    end
+    assert_raises(NoMethodError) { ColorizedString.color_matrix }
   end
 
   def test_color_samples_method
@@ -210,5 +208,9 @@ class TestColorizedString < Minitest::Test
     assert_equal "#{ColorizedString['blue'].blue}#{ColorizedString['red'].red}#{ColorizedString['green'].green}", ColorizedString["#{ColorizedString['blue'].blue}red#{ColorizedString['green'].green}"].red
 
     ColorizedString.prevent_colors false
+  end
+
+  def test_colorized_string_without_readline
+    assert_equal ColorizedString["\e[0;31;49mgreen\e[0m"].green, ColorizedString['green'].green
   end
 end
