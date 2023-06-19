@@ -7,6 +7,7 @@ AllCops:
   TargetRubyVersion: 2.6
   DisplayCopNames: false
   StyleGuideCopsOnly: false
+  NewCops: enable
 Layout/AccessModifierIndentation:
   Description: Check indentation of private/protected visibility modifiers.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#indent-public-private-protected

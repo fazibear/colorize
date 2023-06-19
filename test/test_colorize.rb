@@ -207,4 +207,8 @@ class TestColorize < Minitest::Test
 
     String.prevent_colors false
   end
+
+  def test_colorized_string_without_readline
+    assert_equal "\e[0;31;49mgreen\e[0m".green, 'green'.green
+  end
 end
