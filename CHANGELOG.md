@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.2 / 2023-06-19
+## 1.0.2 / 2023-06-21
   - check if color exists when extending class
 
 ## 1.0.1 / 2023-06-19
@@ -19,9 +19,9 @@
   - fix gemspec bug
 
 ## 0.8.0 / 2016-06-27
-	- add ColorizedString class
-	- update README file
-	- add rubocop.yml and follow style
+  - add ColorizedString class
+  - update README file
+  - add rubocop.yml and follow style
   - add italic mode
   - remove interpreter warrnings
 
