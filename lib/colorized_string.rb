@@ -13,8 +13,8 @@ class ColorizedString < String
   color_methods
   modes_methods
 
-  add_color_alias(:grey, :light_black)
-  add_color_alias(:gray, :light_black)
+  add_color_alias(:grey, :light_black) unless color_exist?(:grey)
+  add_color_alias(:gray, :light_black) unless color_exist?(:gray)
 
   #
   # Shortcut to create ColorizedString with ColorizedString['test'].
