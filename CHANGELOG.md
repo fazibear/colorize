@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.3 / 2023-06-21
+  - fix ? ommit
+
 ## 1.0.2 / 2023-06-21
   - check if color exists when extending class
 

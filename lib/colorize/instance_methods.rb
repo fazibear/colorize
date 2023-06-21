@@ -118,7 +118,7 @@ module Colorize
     # Scan for colorized string
     #
     def scan_for_colors
-      scan(/\001?\033\[([0-9;]+)m\002?(.+?)\001?\033\[0m\002?|([^\001?\033]+)/m).map do |match|
+      scan(/\001?\033\[([0-9;]+)m\002?(.+?)\001?\033\[0m\002?|([^\001\033]+)/m).map do |match|
         split_colors(match)
       end
     end
