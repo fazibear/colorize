@@ -21,7 +21,7 @@ class TestColorize < Minitest::Test
   end
 
   def test_blue_hash
-    assert_equal "\001\033[0;34;49m\002This is also blue\001\033[0m\002", 'This is also blue'.colorize(:color => :blue)
+    assert_equal "\001\033[0;34;49m\002This is also blue?\001\033[0m\002", 'This is also blue?'.colorize(:color => :blue)
   end
 
   def test_light_blue_symbol
