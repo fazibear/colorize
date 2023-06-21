@@ -190,14 +190,18 @@ module Colorize
     # Check if color exists
     #
     def check_if_color_available!(color)
-      color_codes[color] && fail(::Colorize::ColorAlreadyExist, "Colorize: color named :#{color} already exist!")
+      color_exist?(color) && fail(::Colorize::ColorAlreadyExist, "Colorize: color named :#{color} already exist!")
     end
 
     #
     # Check if color is missing
     #
     def check_if_color_exist!(color)
-      color_codes[color] || fail(::Colorize::ColorDontExist, "Colorize: color :#{color} don't exist!")
+      color_exist?(color) || fail(::Colorize::ColorDontExist, "Colorize: color :#{color} don't exist!")
+    end
+
+    def color_exist?(color)
+      !color_codes[color].nil?
     end
   end
 end

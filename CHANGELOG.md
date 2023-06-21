@@ -1,6 +1,12 @@
 # Changelog
 
-## 1.0.0 / 2023-03-23
+## 1.0.2 / 2023-06-19
+  - check if color exists when extending class
+
+## 1.0.1 / 2023-06-19
+  - fix maching of colorized strings without readline characters
+
+## 1.0.0 / 2023-06-19
   - add more modes
   - add aliases
   - grey and gray default aliases
