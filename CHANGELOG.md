@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.0 / 2023-06-22
+  - make readline support optional
+
 ## 1.0.5 / 2023-06-22
   - (backwards compatibility) purple -> magenta
 
