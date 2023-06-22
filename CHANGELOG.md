@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.4 / 2023-06-21
+  - (backwards compatibility) purple -> magenta
+
 ## 1.0.3 / 2023-06-21
   - fix ? ommit
 

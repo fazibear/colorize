@@ -8,7 +8,7 @@ module Colorize
       green:        32,
       yellow:       33,
       blue:         34,
-      purple:       35,
+      magenta:      35,
       cyan:         36,
       white:        37,
       default:      39,
