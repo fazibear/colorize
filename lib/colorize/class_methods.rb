@@ -40,6 +40,28 @@ module Colorize
     }
 
     #
+    # Property for readline support
+    #
+    def enable_readline_support(value = nil)
+      if value.nil?
+        if defined?(@@readline_support)
+          @@readline_support || false
+        else
+          false
+        end
+      else
+        @@readline_support = (value || false)
+      end
+    end
+
+    #
+    # Setter for enable readline support
+    #
+    def enable_readline_support=(value)
+      @@readline_support = (value || false)
+    end
+
+    #
     # Property for disable colorization
     #
     def disable_colorization(value = nil)

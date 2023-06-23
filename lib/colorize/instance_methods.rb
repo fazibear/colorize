@@ -24,7 +24,7 @@ module Colorize
       scan_for_colors.inject(self.class.new) do |str, match|
         colors_from_params(match, params)
         defaults_colors(match)
-        str << "\001\033[#{match[0]};#{match[1]};#{match[2]}m\002#{match[3]}\001\033[0m\002"
+        str << colorized_string(match[0], match[1], match[2], match[3])
       end
     end
 
@@ -47,6 +47,17 @@ module Colorize
     end
 
     private
+
+    #
+    # Generate string with escape colors
+    #
+    def colorized_string(mode, color, background_color, previous)
+      if self.class.enable_readline_support
+        "\001\033[#{mode};#{color};#{background_color}m\002#{previous}\001\033[0m\002"
+      else
+        "\033[#{mode};#{color};#{background_color}m#{previous}\033[0m"
+      end
+    end
 
     #
     # Set default colors
@@ -115,10 +126,21 @@ module Colorize
     end
 
     #
+    # Generate regex for color scanner
+    #
+    def scan_for_colors_regex
+      if self.class.enable_readline_support
+        /\001?\033\[([0-9;]+)m\002?(.+?)\001?\033\[0m\002?|([^\001\033]+)/m
+      else
+        /\033\[([0-9;]+)m(.+?)\033\[0m|([^\033]+)/m
+      end
+    end
+
+    #
     # Scan for colorized string
     #
     def scan_for_colors
-      scan(/\001?\033\[([0-9;]+)m\002?(.+?)\001?\033\[0m\002?|([^\001\033]+)/m).map do |match|
+      scan(scan_for_colors_regex).map do |match|
         split_colors(match)
       end
     end
