@@ -49,7 +49,7 @@ String.prevent_colors true    # don't colorize colorized strings
 # adding aliases (:gray and :grey added by default)
 
 String.add_color_alias(:niebieski, :blue)
-String.add_color_alias(:zielony => :green) 
+String.add_color_alias(:zielony => :green)
 String.add_color_alias(czarny: :black)
 String.add_color_alias(czerwony: :red, granatowy: :blue)
 
@@ -93,7 +93,7 @@ ColorizedString.prevent_colors true    # don't colorize colorized strings
 # adding aliases (:gray and :grey added by default)
 
 ColorizedString.add_color_alias(:niebieski, :blue)
-ColorizedString.add_color_alias(:zielony => :green) 
+ColorizedString.add_color_alias(:zielony => :green)
 ColorizedString.add_color_alias(czarny: :black)
 ColorizedString.add_color_alias(czerwony: :red, granatowy: :blue)
 
@@ -135,7 +135,7 @@ thank you
 license
 -------
 
-Copyright (C) 2007-2016 Michał Kalbarczyk
+    Copyright (C) 2007-2024 Michał Kalbarczyk
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
