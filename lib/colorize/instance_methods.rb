@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 module Colorize
   module InstanceMethods
     #
@@ -20,7 +19,6 @@ module Colorize
     #
     def colorize(params)
       return self if self.class.disable_colorization
-
       scan_for_colors.inject(self.class.new) do |str, match|
         colors_from_params(match, params)
         defaults_colors(match)
@@ -132,7 +130,7 @@ module Colorize
       if self.class.enable_readline_support
         /\001?\033\[([0-9;]+)m\002?(.+?)\001?\033\[0m\002?|([^\001\033]+)/m
       else
-        /\033\[([0-9;]+)m(.+?)\033\[0m|([^\033]+)/m
+        /\033\[([0-9;]+)m(.+?)\033\[0m|(.*)(?<=)\033\[0m(?=(.*))|(.*)/m
       end
     end
 
@@ -151,6 +149,9 @@ module Colorize
       array[0], array[1], array[2] = colors if colors.length == 3
       array[1] = colors                     if colors.length == 1
       array[3] = match[1] || match[2]
+      unless match[4].nil?
+        array[3] = match[4]
+      end  
       array
     end
 
